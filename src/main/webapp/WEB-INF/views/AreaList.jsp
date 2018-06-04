@@ -39,23 +39,47 @@
 		</div>
 		  
 		<div class="box-body">  
-					<table class="table table-boardered">
-						<tr>  
-							<th style="width:150px;">이미지</th>
-							<th style="width:150px;">종목</th>
-							<th style="width:400px;">명칭</th>
-							<th style="width:150px;">소재지</th>												
-						</tr>   
-						<c:forEach items="${result }" var="item">
-							<tr>
-								<td><img src="${item.listImageUrl }"></td>
-								<td align="center">${item.itemNm } ${item.crltsNoNm}호	</td>
-								<td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td>
-								<td>${item.ctrdNm }</td>								
-							</tr>	
-						</c:forEach>						
-					</table>
-				</div>
+			<table class="table table-boardered">
+				<tr>  
+					<th style="width:150px;">이미지</th>
+					<th style="width:150px;">종목</th>
+						<th style="width:400px;">명칭</th>
+						<th style="width:150px;">소재지</th>												
+					</tr>   
+			<c:forEach items="${result }" var="item">
+					<tr>
+						<td><img src="${item.listImageUrl }"></td>
+						<td align="center">${item.itemNm } ${item.crltsNoNm}호	</td>
+						<%-- <td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td> --%>
+						<c:if test="${item.crltsNmChcrt != null }">
+							<td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td>
+						</c:if>								
+						<c:if test="${item.crltsNmChcrt  == null }">                  				
+                 			<td>${item.crltsNm }</td>
+                 		</c:if> 
+						<td>${item.ctrdNm }</td>								
+					</tr>	
+				</c:forEach>						
+			</table>
+		</div>  
+		<div class="box-footer">
+			<div class="text-center">
+				<ul class="pagination">
+					<c:if test="${pageMaker.prev }">
+						<li><a href="AreaList?ctrdCd=${selected }&page=${pageMaker.startPage-1 }"> &lt; </a></li>
+					</c:if>
+					<!-- pageMaker.startPage ~ endPage -->
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<li ${pageMaker.cri.page == idx ? 'class="active"' : '' }><a href="AreaList?ctrdCd=${selected }&page=${idx }">${idx }</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next }">						
+						<li><a href="AreaList?ctrdCd=${selected }&page=${pageMaker.endPage+1 }"> &gt; </a></li>
+					</c:if>  
+				</ul>
+			</div>
+		</div>
+		
+		
 		
 		   
   	<script>

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dgit.domain.AreaListVO;
+import com.dgit.domain.Criteria;
+import com.dgit.domain.PageMaker;
 import com.dgit.util.SendSoap;
 
 /**
@@ -43,15 +45,25 @@ public class culturalController {
 	}
 	
 	@RequestMapping(value="/AreaList", method = RequestMethod.GET)
-	public void AreaList(Model model,int ctrdCd) throws UnsupportedEncodingException{
+	public void AreaList(Model model, int ctrdCd, Criteria cri) throws UnsupportedEncodingException{
 		logger.info("=================AreaList 지역별 목록====================");
 		
-		logger.info("test2");
-		
-		List<AreaListVO> result = SendSoap.sendSoap2(ctrdCd);
+		List<AreaListVO> cnt = SendSoap.sendSoap3(ctrdCd);
+		List<AreaListVO> result = SendSoap.sendSoap2(ctrdCd, cri);
 		for(AreaListVO vo:result){
-			logger.info("========================" + vo.toString());
+		/*	logger.info("========================" + vo.toString());*/
+			
+			
 		}
+		/*logger.info("========================" + cnt.size());*/
+		
+	/*	int totcnt = Integer.parseInt(result.get(0).getTotCnt());*/
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(cnt.size());
+		
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("selected", ctrdCd);		
 		model.addAttribute("result", result);		
 		

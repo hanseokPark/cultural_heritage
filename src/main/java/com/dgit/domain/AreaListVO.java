@@ -1,6 +1,8 @@
 package com.dgit.domain;
 
 public class AreaListVO {
+	//총개수
+	private String totCnt;
 	//문화재 이름(한글 예:서울 숭례문)
 	private String crltsNm;
 	 //문화재 이름(한자 예:서울 崇禮門)
@@ -21,102 +23,89 @@ public class AreaListVO {
     private String listImageUrl;
     private String XCnts;    
     private String YCnts;
-
+    
+	public String getTotCnt() {
+		return totCnt;
+	}
+	public void setTotCnt(String totCnt) {
+		this.totCnt = totCnt;
+	}
 	public String getCrltsNm() {
 		return crltsNm;
 	}
-
 	public void setCrltsNm(String crltsNm) {
 		this.crltsNm = crltsNm;
 	}
-
 	public String getCrltsNmChcrt() {
 		return crltsNmChcrt;
 	}
-
 	public void setCrltsNmChcrt(String crltsNmChcrt) {
 		this.crltsNmChcrt = crltsNmChcrt;
 	}
-
 	public String getCrltsNo() {
 		return crltsNo;
 	}
-
 	public void setCrltsNo(String crltsNo) {
 		this.crltsNo = crltsNo;
 	}
-
 	public String getCrltsNoNm() {
 		return crltsNoNm;
 	}
-
 	public void setCrltsNoNm(String crltsNoNm) {
 		this.crltsNoNm = crltsNoNm;
 	}
-
 	public String getCtrdCd() {
 		return ctrdCd;
 	}
-
 	public void setCtrdCd(String ctrdCd) {
 		this.ctrdCd = ctrdCd;
 	}
-
 	public String getCtrdNm() {
 		return ctrdNm;
 	}
-
 	public void setCtrdNm(String ctrdNm) {
 		this.ctrdNm = ctrdNm;
 	}
-
 	public String getItemCd() {
 		return itemCd;
 	}
-
 	public void setItemCd(String itemCd) {
 		this.itemCd = itemCd;
 	}
-
 	public String getItemNm() {
 		return itemNm;
 	}
-
 	public void setItemNm(String itemNm) {
 		this.itemNm = itemNm;
 	}
-
 	public String getListImageUrl() {
 		return listImageUrl;
 	}
-
 	public void setListImageUrl(String listImageUrl) {
 		this.listImageUrl = listImageUrl;
 	}
-
 	public String getXCnts() {
 		return XCnts;
 	}
-
 	public void setXCnts(String xCnts) {
 		XCnts = xCnts;
 	}
-
 	public String getYCnts() {
 		return YCnts;
 	}
-
 	public void setYCnts(String yCnts) {
 		YCnts = yCnts;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "AreaListVO [crltsNm=" + crltsNm + ", crltsNmChcrt=" + crltsNmChcrt + ", crltsNo=" + crltsNo
-				+ ", crltsNoNm=" + crltsNoNm + ", ctrdCd=" + ctrdCd + ", ctrdNm=" + ctrdNm + ", itemCd=" + itemCd
-				+ ", itemNm=" + itemNm + ", listImageUrl=" + listImageUrl + ", XCnts=" + XCnts + ", YCnts=" + YCnts
-				+ "]";
+		return "AreaListVO [totCnt=" + totCnt + ", crltsNm=" + crltsNm + ", crltsNmChcrt=" + crltsNmChcrt + ", crltsNo="
+				+ crltsNo + ", crltsNoNm=" + crltsNoNm + ", ctrdCd=" + ctrdCd + ", ctrdNm=" + ctrdNm + ", itemCd="
+				+ itemCd + ", itemNm=" + itemNm + ", listImageUrl=" + listImageUrl + ", XCnts=" + XCnts + ", YCnts="
+				+ YCnts + "]";
 	}
+
+	
     
    
 }

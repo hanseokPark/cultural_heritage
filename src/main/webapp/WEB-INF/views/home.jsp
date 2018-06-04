@@ -10,8 +10,8 @@
 <div class="w3-content" style="max-width:1000px;margin-top:80px;margin-bottom:80px"><!-- max-width:500px -->
 	<img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img1.jpg" style="width:100%">
 	<img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img2.jpg" style="width:100%">
-    <img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img3.jpeg" style="width:100%">
-    <img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img4.jpg" style="width:100%">  	
+    <img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img3.jpg" style="width:100%">
+    <img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img4.jpeg" style="width:100%">  	
 </div>
   
 <script>        
