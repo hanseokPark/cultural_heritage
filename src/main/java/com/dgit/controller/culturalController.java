@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dgit.domain.AreaEachVO;
 import com.dgit.domain.AreaListVO;
 import com.dgit.domain.Criteria;
 import com.dgit.domain.PageMaker;
@@ -23,6 +24,8 @@ import com.dgit.util.SendSoap;
 public class culturalController {	
 	private static final Logger logger = LoggerFactory.getLogger(culturalController.class);
 	
+	private static int TOTALCOUNT = 0;
+	private static int AREA_NUMBER = 0;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -45,30 +48,57 @@ public class culturalController {
 	}
 	
 	@RequestMapping(value="/AreaList", method = RequestMethod.GET)
-	public void AreaList(Model model, int ctrdCd, Criteria cri) throws UnsupportedEncodingException{
-		logger.info("=================AreaList 지역별 목록====================");
+	public void AreaList(Model model, int ctrdCd, Criteria cri, int itemCd) throws UnsupportedEncodingException{
+		logger.info("=================AreaList 우리 지역 문화재====================");		
 		
-		List<AreaListVO> cnt = SendSoap.sendSoap3(ctrdCd);
-		List<AreaListVO> result = SendSoap.sendSoap2(ctrdCd, cri);
-		for(AreaListVO vo:result){
-		/*	logger.info("========================" + vo.toString());*/
-			
-			
+		if(AREA_NUMBER == 0){			
+			AREA_NUMBER = ctrdCd;
+			if(TOTALCOUNT == 0){
+				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
+			}
+		}else if(AREA_NUMBER != ctrdCd){
+			AREA_NUMBER = ctrdCd;
+			TOTALCOUNT = 0;
+			if(TOTALCOUNT == 0){
+				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
+			}
+		}else if(AREA_NUMBER == ctrdCd){
+			AREA_NUMBER = ctrdCd;
+			if(TOTALCOUNT == 0){
+				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
+			}else if(TOTALCOUNT == TOTALCOUNT){				
+				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
+			}
 		}
-		/*logger.info("========================" + cnt.size());*/
 		
-	/*	int totcnt = Integer.parseInt(result.get(0).getTotCnt());*/
+		List<AreaListVO> result = SendSoap.sendSoap2(ctrdCd, cri, itemCd);
+		
+		for(AreaListVO vo:result){
+		/*	logger.info("========================" + vo.toString());*/			
+		}
+		
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(cnt.size());
+		pageMaker.setTotalCount(TOTALCOUNT);
 		
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("selected", ctrdCd);		
+		model.addAttribute("areaselected", ctrdCd);		
+		model.addAttribute("eventselected", itemCd);		
 		model.addAttribute("result", result);		
+			
+	}
+	
+	
+	
+	@RequestMapping(value="/DetailView", method = RequestMethod.GET)
+	public void DetailView(Model model, int ctrdCd, int itemCd, String crltsNo) throws Exception{
+		logger.info("================= 명칭 클릭시 상세 보기 ====================");		
 		
 		
+		AreaEachVO result = SendSoap.AreaCrltsDtls(ctrdCd, itemCd, crltsNo);
 		
+		model.addAttribute("cultural", result);
 	}
 	
 }

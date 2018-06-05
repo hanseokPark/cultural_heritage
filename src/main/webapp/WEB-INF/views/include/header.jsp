@@ -34,13 +34,14 @@
 				<a href="#plans" class="w3-button w3-block">사이트 소개</a>
 			</div>  
 			<div class="w3-col s3 w3-dropdown-hover">				  
-				<a href="search" class="w3-button w3-block">문화재 분류 및 검색</a>				
+				<a href="search" class="w3-button w3-block">문화재 검색 및 우리 지역 문화재</a>				
 				<div class="w3-dropdown-content w3-border dropdown">  
-    				<a href="#" class="w3-bar-item w3-button">시대별</a> 
-  		 			<a href="#" class="w3-bar-item w3-button">종목별</a>
-    				<a href="AreaList?ctrdCd=11" class="w3-bar-item w3-button">지역별</a> 
-				</div>
-			</div>
+    				<!-- <a href="#" class="w3-bar-item w3-button">시대별</a> 
+  		 			<a href="#" class="w3-bar-item w3-button">종목별</a> -->
+  		 			<a href="#" class="w3-bar-item w3-button">문화재 검색</a>
+    				<a href="AreaList?ctrdCd=11&itemCd=0" class="w3-bar-item w3-button">우리 지역 문화재</a> 
+				</div>    
+			</div>   
 			<div class="w3-col s3">
 				<a href="#contact" class="w3-button w3-block">게시판</a>
 			</div>

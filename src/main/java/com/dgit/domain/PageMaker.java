@@ -9,6 +9,7 @@ public class PageMaker {
 	
 	private int displayPageNum = 10; //보여 지는 페이지 번호의 갯수
 	private Criteria cri; //현재 페이지 번호를 알아야 페이지 번호의 시작을 알수있음
+	private int tempEndPage;
 	
 	private void calcData(){
 		// 현재 페이지의 끝 번호를 구한다.
@@ -21,7 +22,7 @@ public class PageMaker {
 		
 		// 전체 게시물이 151이고 현재 페이지가 15일때, 마지막 end는 16로 나타나야 한다.
 		// Math.ceil(151/10) = 16
-		int tempEndPage = (int)(Math.ceil(totalCount / (double)cri.getPerPageNum()));
+		tempEndPage = (int)(Math.ceil(totalCount / (double)cri.getPerPageNum()));
 		
 		if(endPage > tempEndPage){
 			endPage = tempEndPage;
@@ -31,6 +32,17 @@ public class PageMaker {
 		next = (endPage * cri.getPerPageNum() >= totalCount) ? false : true;
 	}
 	
+	
+	public int getTempEndPage() {
+		return tempEndPage;
+	}
+
+
+	public void setTempEndPage(int tempEndPage) {
+		this.tempEndPage = tempEndPage;
+	}
+
+
 	public int getTotalCount() {
 		return totalCount;
 	}
@@ -74,11 +86,15 @@ public class PageMaker {
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
+
+
 	@Override
 	public String toString() {
 		return "PageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage + ", prev="
-				+ prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", cri=" + cri + "]";
+				+ prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", cri=" + cri + ", tempEndPage="
+				+ tempEndPage + "]";
 	}
+	
 	
 	
 	
