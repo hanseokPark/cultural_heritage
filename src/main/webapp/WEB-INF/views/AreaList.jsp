@@ -97,22 +97,30 @@
 					<th style="width:150px;">종목</th>
 					<th style="width:400px;">명칭</th>
 					<th style="width:150px;">소재지</th>												
-					</tr>   
+				</tr>   
 			<c:forEach items="${result }" var="item">
-					<tr>  
-						<td><a href="DetailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}"><img src="${item.listImageUrl }"></a></td>				
+					<tr>   
+						<td><img src="${item.listImageUrl }"></td>				
 						<c:if test="${item.itemNm == '중요무형문화재' }">
-							<td align="center">국가무형문화재 ${item.crltsNoNm}호	</td>
+							<td align="center">국가무형문화재 ${item.crltsNoNm}호</td>
 						</c:if>
 						<c:if test="${item.itemNm != '중요무형문화재' }">
-							<td align="center">${item.itemNm } ${item.crltsNoNm}호	</td>
+							<td align="center">${item.itemNm } ${item.crltsNoNm}호</td>
 						</c:if>
 						<%-- <td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td> --%>
 						<c:if test="${item.crltsNmChcrt != null }">
-							<td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td>
+							<td>
+								<a href="DetailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
+								${item.crltsNm }<br>(${item.crltsNmChcrt })
+								</a>
+							</td>
 						</c:if>								
-						<c:if test="${item.crltsNmChcrt  == null }">                  				
-                 			<td>${item.crltsNm }</td>
+						<c:if test="${item.crltsNmChcrt  == null }">   							       				
+                 			<td>
+                 				<a href="DetailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
+                 					${item.crltsNm }
+                 				</a>                 				
+                 			</td>                 			
                  		</c:if> 
 						<td>${item.ctrdNm }</td>								
 					</tr>	

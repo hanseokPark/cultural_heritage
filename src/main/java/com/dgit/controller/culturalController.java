@@ -26,6 +26,8 @@ public class culturalController {
 	
 	private static int TOTALCOUNT = 0;
 	private static int AREA_NUMBER = 0;
+	private static int ITEM_NUMBER = 0;
+	private static int NUMBER = 0;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -52,23 +54,35 @@ public class culturalController {
 		logger.info("=================AreaList 우리 지역 문화재====================");		
 		
 		if(AREA_NUMBER == 0){			
+			logger.info("=================처음====================");		
 			AREA_NUMBER = ctrdCd;
+			ITEM_NUMBER = itemCd;
 			if(TOTALCOUNT == 0){
 				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
+				NUMBER = TOTALCOUNT;
 			}
-		}else if(AREA_NUMBER != ctrdCd){
+		}else if(AREA_NUMBER != ctrdCd){ //지역이 다르면
+			logger.info("=================지역 선택====================");		
 			AREA_NUMBER = ctrdCd;
+			ITEM_NUMBER = itemCd;
 			TOTALCOUNT = 0;
 			if(TOTALCOUNT == 0){
 				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
 			}
-		}else if(AREA_NUMBER == ctrdCd){
+		}else if(AREA_NUMBER == ctrdCd){  //지역이 같으면
+			logger.info("=================종목 선택====================");		
 			AREA_NUMBER = ctrdCd;
-			if(TOTALCOUNT == 0){
+			
+			if(ITEM_NUMBER == itemCd){ //종목이 같음
+				logger.info("=================?????1 지역이 같으면서  종목이 같음===================");	
+				
+				
+			}else if(ITEM_NUMBER != itemCd){
+				logger.info("=================?????2 지역이 같으면서  종목이 다름===================");	
 				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
-			}else if(TOTALCOUNT == TOTALCOUNT){				
-				TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd);
-			}
+				ITEM_NUMBER = itemCd;
+			}			
+			
 		}
 		
 		List<AreaListVO> result = SendSoap.sendSoap2(ctrdCd, cri, itemCd);

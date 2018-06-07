@@ -86,7 +86,7 @@ public class SendSoap {
 			occurance = StringUtils.countOccurrencesOf(in.readLine(), "<item>");
 		
 	
-			System.out.println(occurance);
+			/*System.out.println(occurance);*/
 		
 			in.close();
 			
@@ -271,9 +271,9 @@ public class SendSoap {
 		 AreaEachVO areaEachVO = new AreaEachVO();
 		 
 		 
-		 System.out.println("1 :"+ ctrd);
+		/* System.out.println("1 :"+ ctrd);
 		 System.out.println("2 :"+ item);
-		 System.out.println("3 :"+ crltsNo2);
+		 System.out.println("3 :"+ crltsNo2);*/
 		 
         String message = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' " +
                 "xmlns:head='http://apache.org/headers' xmlns:ser='http://service.areacrlts.crlts.cha/'>"
@@ -316,7 +316,7 @@ public class SendSoap {
                   buffer += inputLine.trim();
                  
             }
-             System.out.println(buffer);
+            /* System.out.println(buffer);*/
              
             // 종목코드
             // 11 : 국보  12 : 보물  13 : 사적  14 : 사적및명승  15 : 명승 
@@ -333,8 +333,17 @@ public class SendSoap {
             String critdDc = buffer.substring((buffer.indexOf("<crltsDc>")+9), buffer.indexOf("</crltsDc>"));
             //문화재 이름(한글 예:서울 숭례문)
             String crltsNm = buffer.substring((buffer.indexOf("<crltsNm>")+9), buffer.indexOf("</crltsNm>"));
-            //문화재 이름(한자 예:서울 崇禮門)
-            String crltsNmChcrt = buffer.substring((buffer.indexOf("<crltsNmChcrt>")+14), buffer.indexOf("</crltsNmChcrt>"));
+            String crltsNmChcrt;
+            if(buffer.contains("<crltsNmChcrt>")){					
+            	//문화재 이름(한자 예:서울 崇禮門)
+                crltsNmChcrt = buffer.substring((buffer.indexOf("<crltsNmChcrt>")+14), buffer.indexOf("</crltsNmChcrt>"));
+			}else{
+				crltsNmChcrt = null;
+			}
+			
+           
+            
+            
             //문화재 지정번호(예: 00010000)
             String crltsNo = buffer.substring((buffer.indexOf("<crltsNo>")+9), buffer.indexOf("</crltsNo>"));
             //문화재 지정번호명(예: 1        (숫자 1은 숭례문이 1호라서 인듯))
@@ -343,16 +352,36 @@ public class SendSoap {
             String ctrdCd = buffer.substring((buffer.indexOf("<ctrdCd>")+8), buffer.indexOf("</ctrdCd>"));
             //문화재 소재지 지역(예: 서울)
             String ctrdNm = buffer.substring((buffer.indexOf("<ctrdNm>")+8), buffer.indexOf("</ctrdNm>"));
+            
+            
+            String imageUrl;
+            
+            if(buffer.contains("<imageUrl>")){		
             //문화재 대표이미지경로(메인)
-            String imageUrl = buffer.substring((buffer.indexOf("<imageUrl>")+10), buffer.indexOf("</imageUrl>"));
+            	imageUrl = buffer.substring((buffer.indexOf("<imageUrl>")+10), buffer.indexOf("</imageUrl>"));
+            }else{
+            	imageUrl = null;
+            }
+            
+            
+            
             //문화재 이미지 여부(예: Y)
             String imageYn = buffer.substring((buffer.indexOf("<imageYn>")+9), buffer.indexOf("</imageYn>"));
             //문화재  종목코드(예: 11)
             String itemCd = buffer.substring((buffer.indexOf("<itemCd>")+8), buffer.indexOf("</itemCd>"));
             //문화재 종목명칭(예: 국보)
             String itemNm = buffer.substring((buffer.indexOf("<itemNm>")+8), buffer.indexOf("</itemNm>"));
-            //문화재 리스트 이미지 경로(썸네일 인듯)
-            String listImageUrl = buffer.substring((buffer.indexOf("<listImageUrl>")+14), buffer.indexOf("</listImageUrl>"));
+            
+            String listImageUrl;
+            if(buffer.contains("<listImageUrl>")){		
+            	//문화재 리스트 이미지 경로(썸네일 인듯)
+            	listImageUrl= buffer.substring((buffer.indexOf("<listImageUrl>")+14), buffer.indexOf("</listImageUrl>"));
+            }else{
+            	listImageUrl = null;
+            }
+            
+            
+            
             //문화재 소재지 시군구 코드(예: 12)
             String signguCd = buffer.substring((buffer.indexOf("<signguCd>")+10), buffer.indexOf("</signguCd>"));
             //문화재 소재지 시군구 명칭(예: 중구)
