@@ -23,6 +23,15 @@
 	.dropdown{
 		width:100%;   
 	}
+	#top{
+		margin-top:80px;
+	}
+	#introduction h2{
+		border-bottom: 1px solid #ddd;
+	}
+	.introduction_padding{
+		padding-left:60px;		
+	}
 </style> 
 <body>  
 	<!-- Links (sit on top) -->
@@ -32,19 +41,19 @@
 				<a href="${pageContext.request.contextPath}/" class="w3-button w3-block">홈</a>
 			</div>   
 			<div class="w3-col s3">
-				<a href="#plans" class="w3-button w3-block">사이트 소개</a>
+				<a href="introductionView" class="w3-button w3-block">사이트 소개</a>
 			</div>  
 			<div class="w3-col s3 w3-dropdown-hover">				  
 				<a href="search" class="w3-button w3-block">문화재 검색 및 우리 지역 문화재</a>				
 				<div class="w3-dropdown-content w3-border dropdown">  
     				<!-- <a href="#" class="w3-bar-item w3-button">시대별</a> 
   		 			<a href="#" class="w3-bar-item w3-button">종목별</a> -->
-  		 			<a href="#" class="w3-bar-item w3-button">문화재 검색</a>
-    				<a href="AreaList?ctrdCd=11&itemCd=0" class="w3-bar-item w3-button">우리 지역 문화재</a> 
+  		 			<a href="search" class="w3-bar-item w3-button">문화재 검색</a>
+    				<a href="areaList?ctrdCd=11&itemCd=0" class="w3-bar-item w3-button">우리 지역 문화재</a> 
 				</div>    
 			</div>   
 			<div class="w3-col s3">
-				<a href="#contact" class="w3-button w3-block">게시판</a>
+				<a href="board" class="w3-button w3-block">게시판</a>
 			</div>
 		</div>
 	</div>	

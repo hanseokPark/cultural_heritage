@@ -16,10 +16,10 @@
 	}
 </style>
 
-<div class="w3-content" style="max-width:1000px;margin-top:80px;margin-bottom:80px">
+<div class="w3-content" style="max-width:1000px; min-height: 800px;"><!--  margin-top:80px;margin-bottom:80px  -->
 	<div class="w3-row w3-container">
 		<div id="selectwrap">
-			<select id="AreaList_select">
+			<select id="areaList_select">
 				<option value="" >-- 특별시 및 광역시 --</option>
 				<option value="11" ${areaselected == '11' ? 'selected' : '' }>서울</option>
 				<option value="21" ${areaselected == '21' ? 'selected' : '' }>부산</option>
@@ -52,7 +52,7 @@
 				<option value="43" ${areaselected == '43' ? 'selected' : '' }>함경남도</option>
 				<option value="46" ${areaselected == '46' ? 'selected' : '' }>기타</option>
 			</select>
-			<select id="EventList_select">
+			<select id="eventList_select">
 				<option value="0"  ${eventselected == '0' ? 'selected' : '' }>-- 지정 종목 --</option>
 				<option value="11" ${eventselected == '11' ? 'selected' : '' }>국보</option>
 				<option value="12" ${eventselected == '12' ? 'selected' : '' }>보물</option>
@@ -74,8 +74,8 @@
 		
 		<script type="text/javascript">
 						$("#searchBtn").click(function(){
-							var area = $("#AreaList_select option:selected").val();
-							var event = $("#EventList_select option:selected").val();
+							var area = $("#areaList_select option:selected").val();
+							var event = $("#eventList_select option:selected").val();
 							
 						 /* 	location.href = "listPage?searchType="+searchType+"&keyword="+keyword; */
 							
@@ -83,7 +83,7 @@
 							
 				  			
 				  			if(area != ""){
-				  				location.href = "AreaList?ctrdCd="+area+"&itemCd="+event;
+				  				location.href = "areaList?ctrdCd="+area+"&itemCd="+event;
 				  			}
 							
 						})
@@ -110,14 +110,14 @@
 						<%-- <td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td> --%>
 						<c:if test="${item.crltsNmChcrt != null }">
 							<td>
-								<a href="DetailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
+								<a href="detailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
 								${item.crltsNm }<br>(${item.crltsNmChcrt })
 								</a>
 							</td>
 						</c:if>								
 						<c:if test="${item.crltsNmChcrt  == null }">   							       				
                  			<td>
-                 				<a href="DetailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
+                 				<a href="detailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
                  					${item.crltsNm }
                  				</a>                 				
                  			</td>                 			
@@ -131,44 +131,21 @@
 			<div class="text-center">
 				<ul class="pagination">  
 					<c:if test="${pageMaker.prev }">
-						<li><a href="AreaList?ctrdCd=${areaselected }&page=1&itemCd=${eventselected}"> &lt;&lt; </a></li>
-						<li><a href="AreaList?ctrdCd=${areaselected }&page=${pageMaker.startPage-1 }&itemCd=${eventselected}"> &lt; </a></li>
+						<li><a href="areaList?ctrdCd=${areaselected }&page=1&itemCd=${eventselected}"> &lt;&lt; </a></li>
+						<li><a href="areaList?ctrdCd=${areaselected }&page=${pageMaker.startPage-1 }&itemCd=${eventselected}"> &lt; </a></li>
 					</c:if>
 					<!-- pageMaker.startPage ~ endPage -->
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li ${pageMaker.cri.page == idx ? 'class="active"' : '' }><a href="AreaList?ctrdCd=${areaselected }&page=${idx }&itemCd=${eventselected}">${idx }</a></li>
+						<li ${pageMaker.cri.page == idx ? 'class="active"' : '' }><a href="areaList?ctrdCd=${areaselected }&page=${idx }&itemCd=${eventselected}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next }">						
-						<li><a href="AreaList?ctrdCd=${areaselected }&page=${pageMaker.endPage+1 }&itemCd=${eventselected}"> &gt; </a></li>
-						<li><a href="AreaList?ctrdCd=${areaselected }&page=${pageMaker.tempEndPage }&itemCd=${eventselected}"> &gt;&gt; </a></li>
+						<li><a href="areaList?ctrdCd=${areaselected }&page=${pageMaker.endPage+1 }&itemCd=${eventselected}"> &gt; </a></li>
+						<li><a href="areaList?ctrdCd=${areaselected }&page=${pageMaker.tempEndPage }&itemCd=${eventselected}"> &gt;&gt; </a></li>
 					</c:if>  
 				</ul>
 			</div>
 		</div>
-		
-		
-		
-<!-- 		   
-  	<script>
-  		$("#AreaList_select").change(function(){
-  			var vv= $("#AreaList_select option:selected").val();
-  			
-  			if(vv != ""){
-  				location.href = "AreaList?ctrdCd="+vv;
-  			}
-  		})
- 	 </script>
-		
-		
-		 -->
-		
-		
-		
-		
-		
-		
-		
-		
+				
 	</div>
 </div>
 

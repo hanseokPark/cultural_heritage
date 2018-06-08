@@ -49,9 +49,10 @@ public class culturalController {
 		
 	}
 	
-	@RequestMapping(value="/AreaList", method = RequestMethod.GET)
+	@RequestMapping(value="/areaList", method = RequestMethod.GET)
 	public void AreaList(Model model, int ctrdCd, Criteria cri, int itemCd) throws UnsupportedEncodingException{
 		logger.info("=================AreaList 우리 지역 문화재====================");		
+		
 		
 		if(AREA_NUMBER == 0){			
 			logger.info("=================처음====================");		
@@ -105,7 +106,7 @@ public class culturalController {
 	
 	
 	
-	@RequestMapping(value="/DetailView", method = RequestMethod.GET)
+	@RequestMapping(value="/detailView", method = RequestMethod.GET)
 	public void DetailView(Model model, int ctrdCd, int itemCd, String crltsNo) throws Exception{
 		logger.info("================= 명칭 클릭시 상세 보기 ====================");		
 		
@@ -113,6 +114,23 @@ public class culturalController {
 		AreaEachVO result = SendSoap.AreaCrltsDtls(ctrdCd, itemCd, crltsNo);
 		
 		model.addAttribute("cultural", result);
+	}
+	
+	
+	@RequestMapping(value="/introductionView", method = RequestMethod.GET)
+	public void introductionView(Model model) throws Exception{
+		logger.info("================= 사이트 소개 ====================");		
+		
+		
+		
+	}
+	
+	@RequestMapping(value="/board", method = RequestMethod.GET)
+	public void boardView(Model model) throws Exception{
+		logger.info("================= 게시판  ====================");		
+		
+		
+		
 	}
 	
 }

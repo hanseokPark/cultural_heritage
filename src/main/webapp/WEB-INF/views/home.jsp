@@ -3,11 +3,14 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="include/header.jsp"%>
- 
-
 
   
-<div class="w3-content" style="max-width:1000px;margin-top:80px;margin-bottom:80px"><!-- max-width:500px -->
+<div id="top">  
+	<header class="w3-center w3-margin-bottom"> 	
+		<h1><b>KOR 문화재 검색 사이트</b></h1>   
+	</header>   
+</div>  
+<div class="w3-content" style="max-width:1000px; min-height: 691px;"><!-- max-width:500px -->
 	<img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img1.jpg" style="width:100%">
 	<img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img2.jpg" style="width:100%">
     <img class="mySlides" src="${pageContext.request.contextPath }/resources/images/img3.jpg" style="width:100%">
