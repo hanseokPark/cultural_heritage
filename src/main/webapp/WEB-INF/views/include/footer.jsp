@@ -10,7 +10,7 @@
 	  
 <!-- Footer -->
  
-<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+<footer class="w3-container w3-padding-25 w3-light-grey w3-center">
   <h4>Footer</h4>  
   <div>
  	 <p><img alt="공공누리" src="${pageContext.request.contextPath }/resources/images/img_opentype01.png">
