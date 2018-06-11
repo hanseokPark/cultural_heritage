@@ -32,6 +32,47 @@
 	.introduction_padding{
 		padding-left:60px;		
 	}
+	.w3-top{
+		min-width:960px;
+	}
+	
+	/* --------------------------- home --------------------------- */	
+	#home_body{
+		min-width:960px;
+	}
+	
+	/* --------------------------- introductionView --------------------------- */
+	
+	#introduction_div{
+		margin-top:80px;
+	}
+	
+	/* --------------------------- board --------------------------- */
+	section.w3-content{
+		min-width:650px;
+	}
+	.row{
+		margin-top:70px;		
+	}
+	
+	.box-body{
+		margin-bottom:10px;
+	}
+	#searchType{
+		height:22px;
+	}
+	#keyword{
+		height:22px;
+	}
+	#register{
+		/* margin-left:550px; */
+		position: absolute;
+		right:0;		  
+	}
+	.col-md-12{
+		padding:0px !important;
+	}
+
 </style> 
 <body>  
 	<!-- Links (sit on top) -->
@@ -56,7 +97,6 @@
 				<a href="board" class="w3-button w3-block">게시판</a>
 			</div>
 		</div>
-	</div>	
-	
+	</div>		
 </body>
 </html>

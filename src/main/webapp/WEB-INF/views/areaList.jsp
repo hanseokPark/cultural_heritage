@@ -12,11 +12,12 @@
 		vertical-align: middle !important;
 	}
 	#selectwrap{
+		padding-top:70px;
 		padding-bottom: 30px;
-	}
+	} 
 </style>
 
-<div class="w3-content" style="max-width:1000px; min-height: 800px;"><!--  margin-top:80px;margin-bottom:80px  -->
+<div class="w3-content" style="max-width:1000px; min-height: 840px; "><!-- min-height: 800px  margin-top:80px;margin-bottom:80px  -->
 	<div class="w3-row w3-container">
 		<div id="selectwrap">
 			<select id="areaList_select">

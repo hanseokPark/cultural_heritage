@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp"%>
 
-	<div class="w3-content" style="max-width:1000px;margin-top:80px;margin-bottom:80px">
-	 	
+	<div class="w3-content" style="max-width:1000px; min-height: 760px; " id="introduction_div">
+	 	 
 		<div class="w3-container" id="introduction">
 			<div>
 				<h2>사이트 제작이유</h2>
