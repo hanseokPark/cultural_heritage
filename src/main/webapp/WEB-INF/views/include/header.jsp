@@ -12,6 +12,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+	<!-- include summernote css/js-->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	
 	
 	<!-- Bootstrap 3.3.4 -->
     <link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -51,13 +60,24 @@
 	section.w3-content{
 		min-width:650px;
 	}
-	.row{
+	section.w3-content .row{
 		margin-top:70px;		
 	}
 	
 	.box-body{
 		margin-bottom:10px;
-	}
+	} 
+	.box-body table tr th,.td{
+		text-align: center;
+	} 
+	/* .box-body table tr .td_title a span{
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space:nowrap;
+		width: 400px;
+		display: inline-block;
+	} */
+	
 	#searchType{
 		height:22px;
 	}
@@ -69,10 +89,22 @@
 		position: absolute;
 		right:0;		  
 	}
-	.col-md-12{
+	/* .col-md-12{
 		padding:0px !important;
-	}
+	} */
 
+
+	/* --------------------------- register --------------------------- */
+	section.content .row{
+		margin-top:70px;
+		margin-bottom:100px;	  
+		margin-left:350px;			
+	}
+	#register_btn{
+		position: absolute;
+		right:0;
+	}
+	
 </style> 
 <body>  
 	<!-- Links (sit on top) -->
