@@ -20,6 +20,7 @@ import com.dgit.util.SendSoap;
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 public class culturalController {	
 	private static final Logger logger = LoggerFactory.getLogger(culturalController.class);
@@ -125,12 +126,7 @@ public class culturalController {
 		
 	}
 	
-	@RequestMapping(value="/board", method = RequestMethod.GET)
-	public void boardView(Model model) throws Exception{
-		logger.info("================= 게시판  ====================");		
-		
-		
-		
-	}
+	
+
 	
 }
