@@ -15,12 +15,24 @@
 		padding-top:70px;
 		padding-bottom: 30px;
 	} 
+	.areaList_select {
+		width: 200px;
+		height: 30px;
+		padding-left: 10px;
+		font-size: 18px;
+		color: black;
+		border: 1px solid black;
+		border-radius: 3px;
+	}
+	#searchBtn{
+		margin-bottom:5px;
+	}
 </style>
 
 <div class="w3-content" style="max-width:1000px; min-height: 840px; "><!-- min-height: 800px  margin-top:80px;margin-bottom:80px  -->
 	<div class="w3-row w3-container">
 		<div id="selectwrap">
-			<select id="areaList_select">
+			<select id="areaList_select" class="areaList_select">
 				<option value="" >-- 특별시 및 광역시 --</option>
 				<option value="11" ${areaselected == '11' ? 'selected' : '' }>서울</option>
 				<option value="21" ${areaselected == '21' ? 'selected' : '' }>부산</option>
@@ -53,7 +65,7 @@
 				<option value="43" ${areaselected == '43' ? 'selected' : '' }>함경남도</option>
 				<option value="46" ${areaselected == '46' ? 'selected' : '' }>기타</option>
 			</select>
-			<select id="eventList_select">
+			<select id="eventList_select" class="areaList_select">
 				<option value="0"  ${eventselected == '0' ? 'selected' : '' }>-- 지정 종목 --</option>
 				<option value="11" ${eventselected == '11' ? 'selected' : '' }>국보</option>
 				<option value="12" ${eventselected == '12' ? 'selected' : '' }>보물</option>
@@ -70,7 +82,7 @@
 				<option value="79" ${eventselected == '79' ? 'selected' : '' }>등록문화재</option>
 				<option value="80" ${eventselected == '80' ? 'selected' : '' }>이북5도 무형문화재</option>								
 			</select>
-			<button id="searchBtn">선택</button>
+			<button type="button" class="btn btn" id="searchBtn">선택</button>
 		</div>
 		
 		<script type="text/javascript">

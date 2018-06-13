@@ -41,9 +41,28 @@ public class culturalController {
 	}
 	
 	@RequestMapping(value="/search", method = RequestMethod.GET)
-	public void search(Model model){
+	public void search(Model model, Criteria cri, int ctrdCd, int itemCd, String culName) throws UnsupportedEncodingException{
 		logger.info("=================search 문화재 분류 및 검색 클릭====================");
 		
+		// itemCd 종목번호  ctrdCd 지역번호 culName(itemNm) 이름
+		
+		if(culName != null){
+			List<AreaListVO> result = SendSoap.sendSoap4(ctrdCd, itemCd, culName);			
+			TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd, culName);
+		
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(TOTALCOUNT);
+			
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("areaselected", ctrdCd);		
+			model.addAttribute("eventselected", itemCd);		
+			model.addAttribute("result", result);
+			
+		}else{
+			String result = null;
+			model.addAttribute("result", result);
+		}
 		
 		
 		
