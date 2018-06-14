@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,6 +43,13 @@ import com.dgit.util.MediaUtils;
 public class BorderController {	
 	private static final Logger logger = LoggerFactory.getLogger(BorderController.class);	
 	
+	private List<String> DBSAVENAME = new ArrayList<String>();
+	private static int COUNT = 0;  //증가식
+	private static int AREA_NUMBER = 0; //
+	
+	
+	
+	
 	@Autowired
 	private BoardService service;
 	
@@ -74,7 +82,7 @@ public class BorderController {
 	public void registerGet(){
 		logger.info("================= 게시판 글쓰기  GET ====================");		
 		
-		
+		DBSAVENAME.clear();
 	}
 	
 	@ResponseBody
@@ -83,6 +91,15 @@ public class BorderController {
 		logger.info("================= imgupload ====================");		
 		UUID uid = UUID.randomUUID(); //중복되지 않는 고유한 키값을 설정할 때 사용
 		String savedName = uid.toString() + "_" + file.getOriginalFilename();
+		logger.info("================= 이미지이름 ===================="+ savedName);
+		
+		
+		DBSAVENAME.add(savedName);
+		
+		
+		logger.info("================= DB이미지이름 ===================="+ DBSAVENAME.toString());
+		
+		
 		File target = new File(uploadPath + "/" + savedName);
 		FileCopyUtils.copy(file.getBytes(), target);
 		
@@ -93,8 +110,9 @@ public class BorderController {
 	@RequestMapping(value="/register", method= RequestMethod.POST)
 	public String registerPOST(BoardVO vo, List<MultipartFile> imageFiles) throws Exception{
 		logger.info("================= 게시판 글쓰기 POST ====================");		
-			
+		logger.info("================= 게시판 글쓰기 POST 이미지 ====================" + imageFiles.toString());		
 		
+		DBSAVENAME.clear();
 		service.regist(vo);
 		
 		return "redirect:/board";
@@ -149,6 +167,120 @@ public class BorderController {
 		}
 				
 		return entity;
+	}
+	
+	@RequestMapping(value="/delete", method= RequestMethod.GET)
+	public void deleteGET(Model model,  String[] imgs, int bno, SearchCriteria cri, BoardVO vo) throws Exception{
+		logger.info("================= 게시판 삭제 비밀번호 입력 GET ====================");		
+		logger.info("================= ===================="+imgs[0]);		
+		
+		List<String> list = new ArrayList<>();
+		String[] img;
+		
+		
+		for(int i= 0; i<imgs.length; i++){	
+		/*for(String file : imgs){*/
+		/*for(int i= 0; i<imgs.length; i++){				
+			list.add(imgs[i]);
+		}*/
+		
+			/*img[i] = imgs[i];			*/
+		}
+		
+		logger.info("=================List===================="+list.toString());		
+		
+		model.addAttribute("bno", bno);
+		model.addAttribute("imgs", list);
+		model.addAttribute("page", cri.getPage());
+		model.addAttribute("perPageNum", cri.getPerPageNum());
+		model.addAttribute("keyword", cri.getKeyword());
+		model.addAttribute("searchType", cri.getSearchType());
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/removePage", method=RequestMethod.GET)
+	public String remove(Model model, String[] imgs, int bno, String pass, SearchCriteria cri, BoardVO vo) throws Exception{
+		logger.info("========================게시물 삭제==========================");
+		logger.info("========================게시물 삭제imgs=========================="+imgs[0]);
+		
+	/*	if(!imgs[0].equals("")){
+			logger.info("=========================== 삭제 게시물에 사진이 있음 ===========================");
+			for(String file : imgs){
+				logger.info(file.toString()+"======================================");
+				deleteFile(uploadPath, file);
+							
+			}
+			
+			vo.setBno(bno);
+			vo.setUr_pass(Integer.parseInt(pass));
+			
+			service.remove(vo);
+			
+		}else{
+			logger.info("===========================삭제 게시물에 사진이 없음 ===========================");
+			
+			vo.setBno(bno);
+			vo.setUr_pass(Integer.parseInt(pass));
+			
+			service.remove(vo);
+			
+		}*/
+		
+		int pass1 = Integer.parseInt(pass);
+		BoardVO pass2 = service.selectPass(bno);
+		
+		
+		
+		logger.info("======================================="+pass2);
+		if(pass2.getUr_pass() == pass1){
+			logger.info("===============삭제===================");
+			for(String file : imgs){
+			/*for(int i= 0; i<imgs.length; i++){
+				if(imgs[i].startsWith("[")){
+					imgs[i].split("[")();
+				}else if(imgs[i].endsWith("]")){
+					
+					
+				}*/
+			
+				System.out.println(file.toString());
+				deleteFile(uploadPath, file);							
+			}
+			
+			vo.setBno(bno);
+			vo.setUr_pass(pass1);
+			
+			service.remove(vo);
+		}else{
+			return "redirect:/delete?bno="+bno+"&page="+cri.getPage()+"&searchType="+cri.getSearchType()+"&keyword="+cri.getKeyword();
+			
+		}
+		
+		
+		
+		model.addAttribute("page", cri.getPage());
+		model.addAttribute("perPageNum", cri.getPerPageNum());
+		model.addAttribute("keyword", cri.getKeyword());
+		model.addAttribute("searchType", cri.getSearchType());
+		
+		return "redirect:/board";
+	
+	
+	}
+	
+	
+	
+	public static void deleteFile(String uploadPath, String filename){
+		
+		File file2 = new File(uploadPath +"/"+ filename);
+	
+		//원본 삭제
+		if(file2.exists()){
+			file2.delete();
+		}
+		
 	}
 
 }

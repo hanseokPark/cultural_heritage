@@ -39,9 +39,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void delete(int dno) throws Exception {
-		// TODO Auto-generated method stub
-		session.delete(namespace + ".delete", dno);
+	public void delete(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub		
+		session.delete(namespace + ".delete", vo);
 	}
 
 	@Override
@@ -129,6 +129,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public void deleteImgAttach(int bno) throws Exception {
 		// TODO Auto-generated method stub
 		session.delete(namespace + ".deleteImgAttach", bno);
+	}
+
+	@Override
+	public BoardVO selectPass(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".selectPass", bno);
 	}
 	
 }

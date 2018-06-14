@@ -51,7 +51,10 @@ public class BoardDAOTest {
 	
 	//@Test
 	public void delete() throws Exception{
-		dao.delete(3);
+		BoardVO vo = new BoardVO();
+		vo.setBno(3);
+		vo.setUr_pass(0);
+		dao.delete(vo);
 	}
 	
 	//@Test

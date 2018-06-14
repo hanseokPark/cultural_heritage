@@ -57,11 +57,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void remove(int bno) throws Exception {
+	public void remove(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		dao.deleteImgAttach(bno);
+		/*dao.deleteImgAttach(bno);*/
 		
-		dao.delete(bno);
+		dao.delete(vo);
 	}
 
 	@Override
@@ -97,6 +97,12 @@ public class BoardServiceImpl implements BoardService {
 		dao.deleteAttach(bno,fullName);
 		
 		
+	}
+
+	@Override
+	public BoardVO selectPass(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectPass(bno);
 	}
 
 	/*@Override
