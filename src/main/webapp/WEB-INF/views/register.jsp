@@ -12,7 +12,7 @@
 					<h3 class="box-title">글쓰기</h3>
 				</div>
 				<div class="box-body">
-					<form method="post" action="register">
+					<form method="post" action="register" enctype="multipart/form-data">
 						<div class="form-group">
 							<label>제목</label>
 							<input type="text" name="title" class="form-control" placeholder="Enter Title">							
@@ -40,33 +40,7 @@
 </section>
 
 <script>
-	/* $(document).ready(function() {
-  	  $('#summernote').summernote({
-   	         height: 300,                 // set editor height
-   	         minHeight: null,             // set minimum height of editor
-    	     maxHeight: null,             // set maximum height of editor
-    	     focus: false                  // set focus to editable area after initializing summernote
-  	  	});
-	});
-	 */
 	
-	/*  $('#summernote').summernote({	 
-         //생략..
-         //해당callback을 아래처럼 등록하면 이미지업로드시 default로 처리하는부분 무시하고 해당 function호출합니다.
-	 callbacks: {                  
-    	 onImageUpload: function(files, editor, welEditable) {
-    		 height: 300,   
-   		  console.log(files);
-   	 	 console.log(editor);
-   	 	 console.log(welEditable);
-   	 	 var opt = {};
-     	    for (var i = files.length - 1; i >= 0; i--) {
-       	 	 sendFile(files[i], this);
-       		 	        	
-      	   }
-    	 }
- 		} 
-	});   */
 	
 	$(document).ready(function() {
 	      $('#summernote').summernote({

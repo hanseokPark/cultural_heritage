@@ -83,6 +83,8 @@
 							
 							if(result){	
 								
+								
+								
 								$("#f1").attr("action","removePage");
 								$("#f1").submit();
 								
