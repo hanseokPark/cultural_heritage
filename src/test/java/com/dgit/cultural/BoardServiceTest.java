@@ -47,7 +47,10 @@ public class BoardServiceTest {
 	}
 	//@Test
 	public void testremove() throws Exception{
-		service.remove(2);
+		BoardVO vo = new BoardVO();
+		vo.setBno(3);
+		vo.setUr_pass(0);
+		service.remove(vo);
 	}
 	
 }

@@ -31,6 +31,12 @@
 				</div>
 				<div class="box-body">
 					<form method="get" id="f1">
+						<input type="hidden" name="bno" value="${readPage.bno }" id="bno">
+						<input type="hidden" name="page" value="${cri.page }">
+						<input type="hidden" name="searchType" value="${cri.searchType }">
+						<input type="hidden" name="keyword" value="${cri.keyword }">
+						<input type="hidden" name="imgs" value="" id="imgs">
+					
 					</form>
 						<div class="form-group">
 							<label>제목</label>
@@ -77,34 +83,48 @@
 							$("#f1").attr("action","modifyPage");
 							$("#f1").submit();
 						})
+						
+						var arr = []; 
+ 
+							$("#content span").find("img").each(function(i , e){
+								console.log( $(this).attr("src").substring(21) );
+								arr[i] = $(this).attr("src").substring(21); 		
+							}) 
+ 							$("#imgs").val(arr);
+						
+						
+						
 						$("#deleteBtn").click(function(){
 							
-						
-							var result = confirm("정말 삭제 하시겠습니까?");
 							
-							if(result){	
+							
+							
+						 	
+						/* 	var result = confirm("정말 삭제 하시겠습니까?");
+							 */
+							/* if(result){	
+								$("#content span").find("img").each(function(i , e){
+									console.log( $(this).attr("src").substring(21) );
+									arr[i] = $(this).attr("src").substring(21); 
+									
+								})  
+								
+								console.log(arr);
+								
+								$("#imgs").val(arr);
 								
 								
 								
-								$("#f1").attr("action","removePage");
-								$("#f1").submit();
 								
 							}
 							return false;
-
 							
-							 
+ */							
+ 
+							$("#f1").attr("action","delete");
+							$("#f1").submit();
 						})  
-						$("#content span").find("img").each(function(i , e){
-							console.log( $(this).attr("src"));
-						})
 						
-						/* $('#content_div').find('img').each(function( ){
-
-							console.log( $(this.attr("src")   
-
-						}); */
-
 
 						
 						</script>

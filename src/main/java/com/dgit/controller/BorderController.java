@@ -32,7 +32,6 @@ import com.dgit.domain.PageMaker;
 import com.dgit.domain.SearchCriteria;
 import com.dgit.service.BoardService;
 import com.dgit.util.MediaUtils;
-import com.dgit.util.UploadFileUtils;
 
 /**
  * Handles requests for the application home page.
@@ -170,50 +169,113 @@ public class BorderController {
 		return entity;
 	}
 	
-	@RequestMapping(value="/removePage", method=RequestMethod.GET)
-	public String remove(Model model, int bno, String[] fileName,SearchCriteria cri, BoardVO vo) throws Exception{
-		logger.info("sboard removePage.........");
+	@RequestMapping(value="/delete", method= RequestMethod.GET)
+	public void deleteGET(Model model,  String[] imgs, int bno, SearchCriteria cri, BoardVO vo) throws Exception{
+		logger.info("================= 게시판 삭제 비밀번호 입력 GET ====================");		
+		logger.info("================= ===================="+imgs[0]);		
 		
-		if(fileName != null ){
-			logger.info("===========================삭제 게시물에 사진이 있음 =========================== " );
-			for(String file : fileName){
-				logger.info(file+"======================================");
-				UploadFileUtils.deleteFile(uploadPath, file);
-				service.deleteAttach(vo.getBno(), file);				
+		List<String> list = new ArrayList<>();
+		String[] img;
+		
+		
+		for(int i= 0; i<imgs.length; i++){	
+		/*for(String file : imgs){*/
+		/*for(int i= 0; i<imgs.length; i++){				
+			list.add(imgs[i]);
+		}*/
+		
+			/*img[i] = imgs[i];			*/
+		}
+		
+		logger.info("=================List===================="+list.toString());		
+		
+		model.addAttribute("bno", bno);
+		model.addAttribute("imgs", list);
+		model.addAttribute("page", cri.getPage());
+		model.addAttribute("perPageNum", cri.getPerPageNum());
+		model.addAttribute("keyword", cri.getKeyword());
+		model.addAttribute("searchType", cri.getSearchType());
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/removePage", method=RequestMethod.GET)
+	public String remove(Model model, String[] imgs, int bno, String pass, SearchCriteria cri, BoardVO vo) throws Exception{
+		logger.info("========================게시물 삭제==========================");
+		logger.info("========================게시물 삭제imgs=========================="+imgs[0]);
+		
+	/*	if(!imgs[0].equals("")){
+			logger.info("=========================== 삭제 게시물에 사진이 있음 ===========================");
+			for(String file : imgs){
+				logger.info(file.toString()+"======================================");
+				deleteFile(uploadPath, file);
+							
 			}
-			service.remove(bno);
+			
+			vo.setBno(bno);
+			vo.setUr_pass(Integer.parseInt(pass));
+			
+			service.remove(vo);
 			
 		}else{
-			logger.info("===========================삭제 게시물에 사진이 없음 =========================== " );
+			logger.info("===========================삭제 게시물에 사진이 없음 ===========================");
 			
-			service.remove(bno);
+			vo.setBno(bno);
+			vo.setUr_pass(Integer.parseInt(pass));
+			
+			service.remove(vo);
+			
+		}*/
+		
+		int pass1 = Integer.parseInt(pass);
+		BoardVO pass2 = service.selectPass(bno);
+		
+		
+		
+		logger.info("======================================="+pass2);
+		if(pass2.getUr_pass() == pass1){
+			logger.info("===============삭제===================");
+			for(String file : imgs){
+			/*for(int i= 0; i<imgs.length; i++){
+				if(imgs[i].startsWith("[")){
+					imgs[i].split("[")();
+				}else if(imgs[i].endsWith("]")){
+					
+					
+				}*/
+			
+				System.out.println(file.toString());
+				deleteFile(uploadPath, file);							
+			}
+			
+			vo.setBno(bno);
+			vo.setUr_pass(pass1);
+			
+			service.remove(vo);
+		}else{
+			return "redirect:/delete?bno="+bno+"&page="+cri.getPage()+"&searchType="+cri.getSearchType()+"&keyword="+cri.getKeyword();
+			
 		}
+		
+		
 		
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("perPageNum", cri.getPerPageNum());
 		model.addAttribute("keyword", cri.getKeyword());
 		model.addAttribute("searchType", cri.getSearchType());
 		
-		return "redirect:/sboard/listPage?page="+cri.getPage();
+		return "redirect:/board";
+	
+	
 	}
 	
 	
 	
 	public static void deleteFile(String uploadPath, String filename){
 		
-		
-		/*
-		File file = new File(uploadPath + filename);
-		//썸네일 삭제
-		if(file.exists()){
-			file.delete();
-		}
-		*/
-		String front = filename.substring(0, 12);
-		String end = filename.substring(14);
-		String originalName = front + end;
-		
-		File file2 = new File(uploadPath + originalName);
+		File file2 = new File(uploadPath +"/"+ filename);
+	
 		//원본 삭제
 		if(file2.exists()){
 			file2.delete();

@@ -16,8 +16,6 @@
 		select * from board where bno = #{bno}
 	</select>
 
-
-
 	<select id="listPage" resultType="BoardVO">
 		select * from board order by bno desc limit #{page}, 10
 	</select>
@@ -43,7 +41,13 @@
 		order by bno desc limit #{pageStart}, #{perPageNum}
 	</select>
 
-
+	<delete id="delete">
+		delete from board where bno = #{bno} and ur_pass = #{ur_pass} 		
+	</delete>
+	
+	<select id="selectPass" resultType="BoardVO">
+		select ur_pass from board where bno = #{bno}		
+	</select>
 
 
 	
@@ -53,9 +57,7 @@
 		update tbl_board set title =#{title}, content=#{content} where bno=#{bno};
 	</update>
 	
-	<delete id="delete">
-		delete from tbl_board where bno = #{bno}
-	</delete>
+	
 	
 	
 	
@@ -91,7 +93,7 @@
    </update>
    
    
-   <insert id="addAttach">
+ <!--   <insert id="addAttach">
    		insert into tbl_attach (fullname, bno) values (#{fullName}, LAST_INSERT_ID())
    </insert>
    
@@ -109,6 +111,6 @@
    
    <delete id="deleteImgAttach">
    		delete from tbl_attach where bno =  #{bno};
-   </delete>
+   </delete> -->
    
 </mapper>

@@ -10,6 +10,7 @@ public interface BoardDAO {
 	public void create(BoardVO vo) throws Exception;
 	public List<BoardVO> listAll() throws Exception;
 	public BoardVO read(int bno) throws Exception;
+	public BoardVO selectPass(int bno) throws Exception;
 	
 	//페이징
 	public int totalSearchCount(SearchCriteria cri) throws Exception;
@@ -17,7 +18,7 @@ public interface BoardDAO {
 	
 	
 	public void update(BoardVO vo) throws Exception;
-	public void delete(int dno) throws Exception;
+	public void delete(BoardVO vo) throws Exception;
 	
 	public List<BoardVO> listPage(int page) throws Exception;
 	
