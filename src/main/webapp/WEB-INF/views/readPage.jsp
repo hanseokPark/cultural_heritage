@@ -53,7 +53,7 @@
 						<div class="form-group" id="content_div">
 							<label>내용</label>
 						</div>
-						<div class="w3">							
+						<div class="w3" id="content">							
 							<span>${readPage.content }</span>
 						</div>
 						<div class="box-footer">					
@@ -78,6 +78,7 @@
 							$("#f1").submit();
 						})
 						$("#deleteBtn").click(function(){
+							
 						
 							var result = confirm("정말 삭제 하시겠습니까?");
 							
@@ -92,8 +93,19 @@
 							return false;
 
 							
-							
+							 
+						})  
+						$("#content span").find("img").each(function(i , e){
+							console.log( $(this).attr("src"));
 						})
+						
+						/* $('#content_div').find('img').each(function( ){
+
+							console.log( $(this.attr("src")   
+
+						}); */
+
+
 						
 						</script>
 						</div>					
