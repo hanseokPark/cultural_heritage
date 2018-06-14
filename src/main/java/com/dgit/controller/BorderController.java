@@ -171,26 +171,25 @@ public class BorderController {
 	
 	@RequestMapping(value="/delete", method= RequestMethod.GET)
 	public void deleteGET(Model model,  String[] imgs, int bno, SearchCriteria cri, BoardVO vo) throws Exception{
-		logger.info("================= 게시판 삭제 비밀번호 입력 GET ====================");		
-		logger.info("================= ===================="+imgs[0]);		
+		logger.info("================= 게시판 삭제 비밀번호 입력 GET ====================");
 		
 		List<String> list = new ArrayList<>();
-		String[] img;
 		
 		
-		for(int i= 0; i<imgs.length; i++){	
-		/*for(String file : imgs){*/
-		/*for(int i= 0; i<imgs.length; i++){				
+		
+		
+		for(int i= 0; i<imgs.length; i++){				
 			list.add(imgs[i]);
-		}*/
-		
-			/*img[i] = imgs[i];			*/
 		}
 		
-		logger.info("=================List===================="+list.toString());		
+		
+		String list2 =  list.toString().substring(1, list.toString().lastIndexOf("]"));		
+			
+		
+		logger.info("=================List===================="+list2);		
 		
 		model.addAttribute("bno", bno);
-		model.addAttribute("imgs", list);
+		model.addAttribute("imgs", list2);
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("perPageNum", cri.getPerPageNum());
 		model.addAttribute("keyword", cri.getKeyword());
@@ -203,7 +202,7 @@ public class BorderController {
 	@RequestMapping(value="/removePage", method=RequestMethod.GET)
 	public String remove(Model model, String[] imgs, int bno, String pass, SearchCriteria cri, BoardVO vo) throws Exception{
 		logger.info("========================게시물 삭제==========================");
-		logger.info("========================게시물 삭제imgs=========================="+imgs[0]);
+
 		
 	/*	if(!imgs[0].equals("")){
 			logger.info("=========================== 삭제 게시물에 사진이 있음 ===========================");
@@ -228,6 +227,8 @@ public class BorderController {
 			
 		}*/
 		
+	/*	imgs.toString().substring(1, imgs.toString().lastIndexOf("]"));*/
+		
 		int pass1 = Integer.parseInt(pass);
 		BoardVO pass2 = service.selectPass(bno);
 		
@@ -237,15 +238,8 @@ public class BorderController {
 		if(pass2.getUr_pass() == pass1){
 			logger.info("===============삭제===================");
 			for(String file : imgs){
-			/*for(int i= 0; i<imgs.length; i++){
-				if(imgs[i].startsWith("[")){
-					imgs[i].split("[")();
-				}else if(imgs[i].endsWith("]")){
-					
-					
-				}*/
+				logger.info("===============삭제 이미지명==================="+file);
 			
-				System.out.println(file.toString());
 				deleteFile(uploadPath, file);							
 			}
 			

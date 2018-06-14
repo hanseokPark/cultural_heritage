@@ -40,14 +40,48 @@ public class culturalController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/search", method = RequestMethod.GET)
-	public void search(Model model, Criteria cri, int ctrdCd, int itemCd, String culName) throws UnsupportedEncodingException{
-		logger.info("=================search 문화재 분류 및 검색 클릭====================");
+	@RequestMapping(value="/search", method = RequestMethod.GET)  //, int ctrdCd, int itemCd, String culName
+	public void searchGET(Model model, Criteria cri) throws UnsupportedEncodingException{
+		logger.info("=================search 문화재 분류 및 검색 클릭 GET====================");
+		
+		// itemCd 종목번호  ctrdCd 지역번호 culName(itemNm) 이름
+		
+		/*if(culName != null){
+			List<AreaListVO> result = SendSoap.sendSoap4(ctrdCd, itemCd, culName);			
+			TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd, culName);
+		
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(TOTALCOUNT);
+			
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("areaselected", ctrdCd);		
+			model.addAttribute("eventselected", itemCd);		
+			model.addAttribute("result", result);
+			
+		}else{
+			String result = null;
+			model.addAttribute("result", result);
+		}
+		*/
+		
+		
+		
+	}
+	
+	@RequestMapping(value="/search", method = RequestMethod.POST)  //
+	public void searchPOST(Model model, Criteria cri, int itemCd, int ctrdCd, String culName) throws UnsupportedEncodingException{
+		logger.info("=================search 문화재 분류 및 검색 클릭 POST====================");
+		logger.info("================종목번호================="+ itemCd);
+		logger.info("================ 지역번호 ================="+ctrdCd );
+		logger.info("================이름================="+ culName);
+		
 		
 		// itemCd 종목번호  ctrdCd 지역번호 culName(itemNm) 이름
 		
 		if(culName != null){
-			List<AreaListVO> result = SendSoap.sendSoap4(ctrdCd, itemCd, culName);			
+			List<AreaListVO> result = SendSoap.sendSoap4(ctrdCd, itemCd, culName);
+			System.out.println(result);
 			TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd, culName);
 		
 			PageMaker pageMaker = new PageMaker();

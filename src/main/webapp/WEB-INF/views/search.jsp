@@ -109,8 +109,14 @@
 			</div>
 		</div>
 		
+		<form method="post" id="f1">  	
+			<input type="hidden" name="ctrdCd" value=" ">
+			<input type="hidden" name="itemCd" value=" ">
+			<input type="hidden" name="culName" value=" ">
+		</form>
+		
 		<script type="text/javascript">
-						$("#searchBtn").click(function(){
+					/* 	$("#searchBtn").click(function(){
 							var area = $("#areaList_select option:selected").val();
 							var event = $("#eventList_select option:selected").val();
 							var name = $("#search_name").val();
@@ -122,10 +128,25 @@
 				  			 	location.href = "search?ctrdCd="+area+"&itemCd="+event+"&culName="+name;
 				  			}
 							
-						})
+						}) */
+						
+						$("#searchBtn").click(function(){
+							var area = $("#areaList_select option:selected").val();
+							var event = $("#eventList_select option:selected").val();
+							var name = $("#search_name").val();
+							
+							$("input[name='ctrdCd']").val(area);
+							$("input[name='itemCd']").val(event);
+							$("input[name='culName']").val(name);				
+							
+						
+							$("#f1").attr("action","search");
+							$("#f1").submit();								
+					
+						})    
 					
 		</script>
-		
+		 
 		<c:if test="${result != null }">
 		
 		<div class="box-body">  
@@ -145,7 +166,7 @@
 						<c:if test="${item.itemNm != '중요무형문화재' }">
 							<td align="center">${item.itemNm } ${item.crltsNoNm}호</td>
 						</c:if>
-						<%-- <td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td> --%>
+						<td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td>
 						<c:if test="${item.crltsNmChcrt != null }">
 							<td>
 								<a href="detailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
