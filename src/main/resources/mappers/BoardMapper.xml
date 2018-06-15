@@ -20,9 +20,6 @@
 		select * from board order by bno desc limit #{page}, 10
 	</select>
 
-
-
-
 	<sql id="search">
       <if test="searchType == 't'.toString()">
          where title like CONCAT('%',#{keyword},'%')
@@ -49,13 +46,16 @@
 		select ur_pass from board where bno = #{bno}		
 	</select>
 
-
-	
-	
-	
 	<update id="update">
-		update tbl_board set title =#{title}, content=#{content} where bno=#{bno};
+		update board set title =#{title}, content=#{content} where bno=#{bno};
 	</update>
+	
+	
+	<update id="updateViewCnt">
+		update board set viewcnt = viewcnt + 1
+		where bno = #{bno}
+  	</update>
+	
 	
 	
 	
@@ -87,10 +87,7 @@
    </update>
    
    
-   <update id="updateViewCnt">
-		update tbl_board set viewcnt = viewcnt + 1
-		where bno = #{bno}
-   </update>
+ 
    
    
  <!--   <insert id="addAttach">

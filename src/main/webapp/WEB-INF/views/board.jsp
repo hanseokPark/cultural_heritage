@@ -8,7 +8,7 @@
 
 	 
 	<section class="w3-content">
-	<div class="w3-content" style="max-width:1000px; min-height: 770px;">
+	<div class="w3-content" style="max-width:1200px; min-height: 770px;">
 	<div class="row">    
 		<div class="col-md-12">
 			<div class="box box-primary">
@@ -21,16 +21,26 @@
 						<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>제목</option>
 						<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>내용</option>
 						<option value="w" ${cri.searchType == 'w' ? 'selected' : '' }>작성자</option>						
-					</select>
+					</select>  
 					<input type="text" name="keyword" id="keyword" value="${cri.keyword }">
-					<button id="searchBtn">Search</button>
-					<button id="register">글쓰기</button>
+					<button id="searchBtn" class="btn btn-default">검색</button>   
+					<span id="btn_span">
+						<a href="${pageContext.request.contextPath }/user/login" id="login" class="btn btn-primary btn-flat">관리자 로그인</a>
+						
+					<%-- <c:if test="${login != null  }">
+                    	<a href="${pageContext.request.contextPath }/user/logout" class="btn btn-danger btn-flat">관리자 로그아웃</a>
+                    </c:if>
+                    <c:if test="${login == null }">
+                    	<a href="${pageContext.request.contextPath }/user/login" class="btn btn-default btn-flat">Sign in</a>
+                    </c:if> --%>
+                    <a id="register" class="btn btn-success btn-flat">글쓰기</a>
+					</span>
 					<script type="text/javascript">
 						$("#searchBtn").click(function(){
 							var searchType = $("#searchType").val();
 							var keyword = $("#keyword").val();
 							
-							location.href = "listPage?searchType="+searchType+"&keyword="+keyword;
+							location.href = "board?searchType="+searchType+"&keyword="+keyword;
 							
 						})  
 						
@@ -52,8 +62,7 @@
 						<c:forEach var="item" items="${list }">
 							<tr>
 								<td class="td">${item.bno }</td>
-								<td class="td_title"><a href="readPage?bno=${item.bno }&page=${pageMaker.cri.page}&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a">${item.title }</a> [${item.replycnt}]</td>
-							
+								<td class="td_title"><a href="readPage?bno=${item.bno }&page=${pageMaker.cri.page}&searchType=${cri.searchType }&keyword=${cri.keyword}&viewCnt=0" class="a">${item.title }</a> [${item.replycnt}]</td>							
 						<%-- 		<td class="td_title"><a href="readPage?bno=${item.bno }" class="a"><span>${item.title }</span></a> [${item.replycnt}]</td> --%>
 								<td class="td">${item.writer }</td>
 								<td class="td"><fmt:formatDate value="${item.regdate }" pattern="yyyy-MM-dd HH:mm"/></td>

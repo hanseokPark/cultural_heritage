@@ -451,7 +451,7 @@ public class SendSoap {
 			}
 			System.out.println(ctrd);
 			System.out.println(item);
-			System.out.println(culName);
+			System.out.println(name);
 			
 			List<AreaListVO> strList = new ArrayList<>();
 

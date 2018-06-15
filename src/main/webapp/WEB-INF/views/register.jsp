@@ -4,15 +4,23 @@
     pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp"%>
 
+<style>
+	.btnAll{
+		text-align: right;
+	}
+	
+</style>
+
+<div class="w3-content" style="max-width:1000px;  min-height: 771px;">
 <section class="content">
-	<div class="row">
-		<div class="col-md-10">
+	<div class="row">    
+		<div class="col-md-14">
 			<div class="box box-primary"> 
 				<div class="box-header">
 					<h3 class="box-title">글쓰기</h3>
 				</div>
 				<div class="box-body">
-					<form method="post" action="register" enctype="multipart/form-data">
+					<form method="post" id="f1">
 						<div class="form-group">
 							<label>제목</label>
 							<input type="text" name="title" class="form-control" placeholder="Enter Title">							
@@ -23,21 +31,57 @@
 						</div>
 						<div class="form-group">
 							<label>비밀번호</label>
-							<input type="text" name="ur_pass" class="form-control" placeholder="숫자만 입력">
+							<input type="text" name="ur_pass" class="form-control" placeholder="숫자만 입력" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 						</div>
 						<div class="form-group">
 							<label>내용</label>
 							<textarea rows="5" cols="30" class="form-control" name="content" id="summernote"></textarea>
-						</div>			
-						<div class="form-group">
-							<input type="submit" class="btn btn-primary"  id="register_btn">
-						</div>
+						</div>							
 					</form>  
+					<div class="form-group btnAll">  
+						<input type="submit" class="btn btn-primary"  id="register_btn" value="등록">
+						<input type="submit" class="btn btn-warning"  id="cancel_btn" value="취소">  
+					</div>
+					<script>
+							$("#register_btn").click(function(){
+								var title = $("input[name='title']").val();
+								var writer = $("input[name='writer']").val();
+								var ur_pass = $("input[name='ur_pass']").val();
+								
+								if(title == ""){
+									alert("제목을 입력하세요");
+									return;
+								}
+								if(writer == ""){
+									alert("작성자를 입력하세요");
+									return;
+								}
+								if(ur_pass == ""){
+									alert("비밀번호를 입력하세요 (숫자만 가능합니다.)");
+									return;  
+								}
+								
+								$("#f1").attr("action","register");
+								$("#f1").submit();
+							})
+							
+							
+							$("#cancel_btn").click(function(){
+								location.href = "${pageContext.request.contextPath}/board"; 
+							})     
+							
+							
+							/* document.$("button[title data-original-title='Remove Image']").click(function(){
+								alert(this);
+							})      */
+					</script>
+					
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+</div>
 
 <script>
 	
