@@ -45,17 +45,7 @@
 						<div class="form-group">
 							<label>작성자</label>
 							<input type="text" name="writer" class="form-control" placeholder="Enter Writer" value="${readPage.writer }" readonly="readonly">
-						</div>
-					<%-- 	<div class="form-group">
-							<label>내용</label>
-							<div class="form-control">  
-								${readPage.content }
-							  
-							</div>
-							
-
-							<input type="text" name="writer" class="form-control" value="${readPage.content }" readonly="readonly">
-						</div>   --%>
+						</div>					
 						<div class="form-group" id="content_div">
 							<label>내용</label>
 						</div>
@@ -73,8 +63,7 @@
 							GO LIST
 						</button>  
 						<script>
-						$("#goListBtn").click(function(){
-							/* location.href="${pageContext.request.contextPath}/board/listAll"}; */
+						$("#goListBtn").click(function(){						
 							
 							$("#f1").attr("action","board");
 							$("#f1").submit();
@@ -95,32 +84,7 @@
 						
 						
 						$("#deleteBtn").click(function(){
-							
-							
-							
-							
-						 	
-						/* 	var result = confirm("정말 삭제 하시겠습니까?");
-							 */
-							/* if(result){	
-								$("#content span").find("img").each(function(i , e){
-									console.log( $(this).attr("src").substring(21) );
-									arr[i] = $(this).attr("src").substring(21); 
-									
-								})  
-								
-								console.log(arr);
-								
-								$("#imgs").val(arr);
-								
-								
-								
-								
-							}
-							return false;
-							
- */							
- 
+						
 							$("#f1").attr("action","delete");
 							$("#f1").submit();
 						})  
@@ -136,33 +100,6 @@
 </section>
 
 <script>
-	/* $(document).ready(function() {
-  	  $('#summernote').summernote({
-   	         height: 300,                 // set editor height
-   	         minHeight: null,             // set minimum height of editor
-    	     maxHeight: null,             // set maximum height of editor
-    	     focus: false                  // set focus to editable area after initializing summernote
-  	  	});
-	});
-	 */
-	
-	/*  $('#summernote').summernote({	 
-         //생략..
-         //해당callback을 아래처럼 등록하면 이미지업로드시 default로 처리하는부분 무시하고 해당 function호출합니다.
-	 callbacks: {                  
-    	 onImageUpload: function(files, editor, welEditable) {
-    		 height: 300,   
-   		  console.log(files);
-   	 	 console.log(editor);
-   	 	 console.log(welEditable);
-   	 	 var opt = {};
-     	    for (var i = files.length - 1; i >= 0; i--) {
-       	 	 sendFile(files[i], this);
-       		 	        	
-      	   }
-    	 }
- 		} 
-	});   */
 	
 	$(document).ready(function() {
 	      $('#summernote').summernote({
