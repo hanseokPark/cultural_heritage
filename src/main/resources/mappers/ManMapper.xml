@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgit.mapper.ManMapper">
+<!-- 	
+	<select id="login" resultType="UserVO">
+		select uid, upw, uname from manager
+		where uid = #{uid} and upw = #{upw}
+	</select> -->
+	
+	
+	<select id="login" resultType="ManagerVO">
+		select id, man_pass from manager
+		where id = #{id} and man_pass = #{man_pass}
+	</select>
+	
+	
+	
+   
+</mapper>

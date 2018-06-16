@@ -84,26 +84,16 @@
 	#keyword{
 		height:22px;
 	}
-	#register{
-		/* margin-left:550px; */
+	#btn_span{		
 		position: absolute;
 		right:0;		  
-	}
-	/* .col-md-12{
-		padding:0px !important;
-	} */
-
+	}	
 
 	/* --------------------------- register --------------------------- */
 	section.content .row{
+		margin:0 auto;
 		margin-top:70px;
-		margin-bottom:100px;	  
-		margin-left:350px;			
-	}
-	#register_btn{
-		position: absolute;
-		right:0;
-	}
+	}	
 	
 </style> 
 <body>  

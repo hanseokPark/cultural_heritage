@@ -30,7 +30,7 @@ public interface BoardDAO {
 	
 	
 	public void updateReplyCnt(int bno, int amount) throws Exception;
-	public int updateViewCnt(int bno) throws Exception;
+	public int updateViewCnt(int bno) throws Exception;  //게시판 조회수
 	
 	public void addAttach(String fullName) throws Exception;
 	public List<String> getAttach(int bno) throws Exception;
