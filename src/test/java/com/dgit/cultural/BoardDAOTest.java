@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dgit.domain.BoardVO;
 import com.dgit.domain.Criteria;
+import com.dgit.domain.ManagerVO;
 import com.dgit.domain.SearchCriteria;
 import com.dgit.persistence.BoardDAO;
 
@@ -91,6 +92,7 @@ public class BoardDAOTest {
 		cri.setKeyword("테스트");
 		dao.listSearch(cri);
 	}
+	
 }
 
 

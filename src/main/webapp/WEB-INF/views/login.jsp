@@ -24,7 +24,7 @@
 			<a href="#"><b>관리자</b> 로그인</a>
 		</div>
 		<div class="login-box-body">
-			<form action="loginPost" method="post">
+			<form action="login" method="post">
 				<div class="form-group has-feedback">
 					<input type="text" name="id" class="form-control" placeholder="MANAGER ID"/>
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>

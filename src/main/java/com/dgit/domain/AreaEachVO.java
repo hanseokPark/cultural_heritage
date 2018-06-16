@@ -2,7 +2,7 @@ package com.dgit.domain;
 
 public class AreaEachVO {
 	//문화재 설명
-    private String critdDc;
+    private String crltsDc;
     //문화재 이름(한글 예:서울 숭례문)
     private String crltsNm;
     //문화재 이름(한자 예:서울 崇禮門)
@@ -38,11 +38,12 @@ public class AreaEachVO {
     
     
     
-	public String getCritdDc() {
-		return critdDc;
+	
+	public String getCrltsDc() {
+		return crltsDc;
 	}
-	public void setCritdDc(String critdDc) {
-		this.critdDc = critdDc;
+	public void setCrltsDc(String crltsDc) {
+		this.crltsDc = crltsDc;
 	}
 	public String getCrltsNm() {
 		return crltsNm;
@@ -134,16 +135,16 @@ public class AreaEachVO {
 	public void setYCnts(String yCnts) {
 		YCnts = yCnts;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "AreaEachVO [critdDc=" + critdDc + ", crltsNm=" + crltsNm + ", crltsNmChcrt=" + crltsNmChcrt
+		return "AreaEachVO [crltsDc=" + crltsDc + ", crltsNm=" + crltsNm + ", crltsNmChcrt=" + crltsNmChcrt
 				+ ", crltsNo=" + crltsNo + ", crltsNoNm=" + crltsNoNm + ", ctrdCd=" + ctrdCd + ", ctrdNm=" + ctrdNm
 				+ ", imageUrl=" + imageUrl + ", imageYn=" + imageYn + ", itemCd=" + itemCd + ", itemNm=" + itemNm
 				+ ", listImageUrl=" + listImageUrl + ", signguCd=" + signguCd + ", signguNm=" + signguNm + ", XCnts="
 				+ XCnts + ", YCnts=" + YCnts + "]";
-	} 
+	}
+	
+	
 	
 	
 	

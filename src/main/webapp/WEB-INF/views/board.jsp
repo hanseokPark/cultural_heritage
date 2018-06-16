@@ -24,17 +24,9 @@
 					</select>  
 					<input type="text" name="keyword" id="keyword" value="${cri.keyword }">
 					<button id="searchBtn" class="btn btn-default">검색</button>   
-					<span id="btn_span">
-						<a href="${pageContext.request.contextPath }/user/login" id="login" class="btn btn-primary btn-flat">관리자 로그인</a>
-						
-					<%-- <c:if test="${login != null  }">
-                    	<a href="${pageContext.request.contextPath }/user/logout" class="btn btn-danger btn-flat">관리자 로그아웃</a>
-                    </c:if>
-                    <c:if test="${login == null }">
-                    	<a href="${pageContext.request.contextPath }/user/login" class="btn btn-default btn-flat">Sign in</a>
-                    </c:if> --%>
+										  
                     <a id="register" class="btn btn-success btn-flat">글쓰기</a>
-					</span>
+					
 					<script type="text/javascript">
 						$("#searchBtn").click(function(){
 							var searchType = $("#searchType").val();

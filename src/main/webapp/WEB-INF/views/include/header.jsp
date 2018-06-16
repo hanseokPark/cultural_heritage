@@ -84,7 +84,7 @@
 	#keyword{
 		height:22px;
 	}
-	#btn_span{		
+	#register{		
 		position: absolute;
 		right:0;		  
 	}	

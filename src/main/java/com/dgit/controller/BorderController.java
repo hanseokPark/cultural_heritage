@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dgit.domain.BoardVO;
+import com.dgit.domain.ManagerVO;
 import com.dgit.domain.PageMaker;
 import com.dgit.domain.SearchCriteria;
 import com.dgit.service.BoardService;
@@ -116,19 +117,12 @@ public class BorderController {
 				service.boardviewcnt(bno);
 				VIEWCNT = true;
 			}
-			
-			
 		}
-		
-		
 		
 		BoardVO vo = service.read(bno);
 		model.addAttribute("boardVO", vo);
 		
 	}
-	
-	
-	
 	
 	
 	
@@ -155,30 +149,30 @@ public class BorderController {
 				
 				
 			}
-			logger.info("================= 삭제 ===================="+bno);
-			model.addAttribute("bno", bno);
+			logger.info("================= 삭제 ====================");
+			/*model.addAttribute("bno", bno);
 			model.addAttribute("page", cri.getPage());
 			model.addAttribute("perPageNum", cri.getPerPageNum());
 			model.addAttribute("keyword", cri.getKeyword());
 			model.addAttribute("searchType", cri.getSearchType());
-			model.addAttribute("check", check);
+			model.addAttribute("check", check);*/
 			
 		}else{
-			logger.info("================= 수정 ===================="+bno);
-			model.addAttribute("bno", bno);
+			logger.info("================= 수정 ====================");
+			/*model.addAttribute("bno", bno);
 			model.addAttribute("page", cri.getPage());
 			model.addAttribute("perPageNum", cri.getPerPageNum());
 			model.addAttribute("keyword", cri.getKeyword());
 			model.addAttribute("searchType", cri.getSearchType());
-			model.addAttribute("check", check);
+			model.addAttribute("check", check);*/
 		}
 		
-		/*model.addAttribute("bno", bno);
+		model.addAttribute("bno", bno);
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("perPageNum", cri.getPerPageNum());
 		model.addAttribute("keyword", cri.getKeyword());
 		model.addAttribute("searchType", cri.getSearchType());
-		model.addAttribute("check", check);*/
+		model.addAttribute("check", check);
 		
 	}
 	@RequestMapping(value="/boardcheck", method= RequestMethod.POST)
@@ -274,24 +268,96 @@ public class BorderController {
 		
 	/*	imgs.toString().substring(1, imgs.toString().lastIndexOf("]"));*/
 		
-		int pass1 = Integer.parseInt(pass);
-		BoardVO pass2 = service.selectPass(bno);
 		
+		if (isStringDouble(pass)){
+			  System.out.println("숫자입니다.");
+			  int pass1 = Integer.parseInt(pass);
+			  BoardVO pass2 = service.selectPass(bno);
+				ManagerVO Manpass = service.selectManagerPass();
+				
+				logger.info("============"+Manpass  + pass);
+				
+				
+				logger.info("======================================="+pass2);
+				if(pass2.getUr_pass() == Integer.parseInt(pass) ){
+					logger.info("===============작성자 삭제===================");
+					for(String file : imgs){
+						logger.info("===============삭제 이미지명==================="+file);
+					
+						deleteFile(uploadPath, file);		
+					}
+					
+					vo.setBno(bno);
+					vo.setUr_pass(pass1);
+					
+					service.remove(vo);
+					
+				}else{
+					logger.info("===============숫자 맞음 비밀번호 틀림================="+imgs);
+					model.addAttribute("imgs", imgs);
+					model.addAttribute("mod", "mod");
+					model.addAttribute("page", cri.getPage());			
+					model.addAttribute("bno", bno);
+					model.addAttribute("cri", cri);
+					model.addAttribute("check", check);
+					return "/boardcheck";
+				}
+		}else{
+			  System.out.println("숫자가 아닙니다.");
+			  
+			  ManagerVO Manpass = service.selectManagerPass();
+			  
+			  if(Manpass.getMan_pass().equals(pass)){
+				  logger.info("===============관리자 삭제===================");
+				  for(String file : imgs){
+						logger.info("===============삭제 이미지명==================="+file);
+					
+						deleteFile(uploadPath, file);							
+					}
+					
+					service.removeManager(bno);
+			  }else{
+					logger.info("===============숫자 아님 비밀번호 틀림================="+imgs);
+					model.addAttribute("imgs", imgs);
+					model.addAttribute("mod", "mod");
+					model.addAttribute("page", cri.getPage());			
+					model.addAttribute("bno", bno);
+					model.addAttribute("cri", cri);
+					model.addAttribute("check", check);
+					return "/boardcheck";
+					
+				}
+		}
+		
+	/*	int pass1 = Integer.parseInt(pass); */
+		/*BoardVO pass2 = service.selectPass(bno);
+		ManagerVO Manpass = service.selectManagerPass();
+		
+		logger.info("============"+Manpass  + pass);
 		
 		
 		logger.info("======================================="+pass2);
-		if(pass2.getUr_pass() == pass1){
+		if(pass2.getUr_pass() == Integer.parseInt(pass) ){
 			logger.info("===============삭제===================");
 			for(String file : imgs){
 				logger.info("===============삭제 이미지명==================="+file);
 			
 				deleteFile(uploadPath, file);							
 			}
-			
+			int pass1 = Integer.parseInt(pass);
 			vo.setBno(bno);
 			vo.setUr_pass(pass1);
 			
 			service.remove(vo);
+		}else if(Manpass.getMan_pass() == pass){
+			for(String file : imgs){
+				logger.info("===============삭제 이미지명==================="+file);
+			
+				deleteFile(uploadPath, file);							
+			}
+			
+			service.removeManager(bno);
+			
 		}else{
 			logger.info("===============비밀번호 틀림================="+imgs);
 			model.addAttribute("imgs", imgs);
@@ -302,7 +368,7 @@ public class BorderController {
 			model.addAttribute("check", check);
 			return "/boardcheck";
 			
-		}
+		}*/
 		
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("perPageNum", cri.getPerPageNum());
@@ -311,6 +377,60 @@ public class BorderController {
 		
 		return "redirect:/board";		
 	}
+	
+	
+	
+	
+	
+	private boolean isStringDouble(String pass) {
+		// TODO Auto-generated method stub
+		try {
+	        Double.parseDouble(pass);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
+
+
+
+
+
+	/*
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public void loginGET(Model model) throws Exception{
+		logger.info("=================== 관리자 로그인 GET ==================");
+		
+		
+		
+		
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String loginPOST(Model model, ManagerVO vo, String id) throws Exception{
+		logger.info("=================== 관리자 로그인 POST ==================");
+		logger.info("=================== 관리자 로그인 POST =================="+service.login(vo));
+		
+		
+		vo = service.login(vo);
+		
+		
+		if(vo == null){
+			return "redirect:/login";
+		}
+		
+		
+		
+		model.addAttribute("login", true);
+		
+		return "redirect:/board";
+		
+	}*/
+	
+	
+	
+	
 	
 	
 	

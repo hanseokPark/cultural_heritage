@@ -329,8 +329,16 @@ public class SendSoap {
             // 11 : 서울 21 : 부산 22 : 대구 23 : 인천 24 : 광주 25 : 대전 26 : 울산 45 : 세종 31 : 경기 32 : 강원 
             // 33 : 충북 34 : 충남 35 : 전북 36 : 전남 37 : 경북 38 : 경남 50 : 제주 ZZ : 전국일원
             
-            //문화재 설명
-            String critdDc = buffer.substring((buffer.indexOf("<crltsDc>")+9), buffer.indexOf("</crltsDc>"));
+             String crltsDc;
+             
+             if(buffer.contains("<crltsDc>")){	
+            	//문화재 설명
+            	 crltsDc = buffer.substring((buffer.indexOf("<crltsDc>")+9), buffer.indexOf("</crltsDc>"));
+             }else{
+            	 crltsDc = null;
+             }
+             System.out.println(crltsDc);
+            
             //문화재 이름(한글 예:서울 숭례문)
             String crltsNm = buffer.substring((buffer.indexOf("<crltsNm>")+9), buffer.indexOf("</crltsNm>"));
             String crltsNmChcrt;
@@ -394,7 +402,7 @@ public class SendSoap {
             
             
             
-            areaEachVO.setCritdDc(critdDc);
+            areaEachVO.setCrltsDc(crltsDc);
             areaEachVO.setCrltsNm(crltsNm);
             areaEachVO.setCrltsNmChcrt(crltsNmChcrt);
             areaEachVO.setCrltsNo(crltsNo);

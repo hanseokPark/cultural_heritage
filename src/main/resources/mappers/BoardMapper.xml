@@ -42,9 +42,19 @@
 		delete from board where bno = #{bno} and ur_pass = #{ur_pass} 		
 	</delete>
 	
+	
+	<delete id="deleteManager">
+		delete from board where bno = #{bno};	
+	</delete>
+	
 	<select id="selectPass" resultType="BoardVO">
 		select ur_pass from board where bno = #{bno}		
 	</select>
+	
+	<select id="selectManagerPass" resultType="ManagerVO">
+		select man_pass from manager;
+	</select>
+	
 
 	<update id="update">
 		update board set title =#{title}, content=#{content} where bno=#{bno};
@@ -55,9 +65,17 @@
 		update board set viewcnt = viewcnt + 1
 		where bno = #{bno}
   	</update>
+  	
+  		<select id="totalCount" resultType="int">
+		select count(bno) from board
+	</select>
 	
-	
-	
+   <select id="totalSearchCount" resultType="int">
+      	select count(bno) from board
+      	<include refid="search" />
+   </select>
+   
+  	
 	
 	
 	
@@ -68,19 +86,6 @@
 
 	
 	
-   
-	
-	
-	<select id="totalCount" resultType="int">
-		select count(bno) from board
-	</select>
-	
-   <select id="totalSearchCount" resultType="int">
-      	select count(bno) from board
-      	<include refid="search" />
-   </select>
-   
-   
    <update id="updateReplyCnt">
    		update tbl_board set replycnt = replycnt + #{amount}
    		where bno = #{bno}
@@ -88,26 +93,5 @@
    
    
  
-   
-   
- <!--   <insert id="addAttach">
-   		insert into tbl_attach (fullname, bno) values (#{fullName}, LAST_INSERT_ID())
-   </insert>
-   
-   <insert id="modaddAttach">
-   		insert into tbl_attach (fullname, bno) values (#{fullName}, #{bno})
-   </insert>
-   
-   <select id="getAttach" resultType="string">
-   		select fullname from tbl_attach where bno = #{bno} order by regdate
-   </select>
-   
-   <delete id="deleteAttach">
-		delete from tbl_attach where bno = #{bno} and fullName = #{fullName};
-	</delete>
-   
-   <delete id="deleteImgAttach">
-   		delete from tbl_attach where bno =  #{bno};
-   </delete> -->
    
 </mapper>

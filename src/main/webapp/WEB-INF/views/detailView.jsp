@@ -49,43 +49,32 @@
 				<table class="table" id="main_table">
 					<tr>
 						<td style="width:280px;">
-							<c:if test="${cultural.imageUrl != null }">
+							<c:if test="${cultural.imageYn == 'Y'}">
 								<img src="${cultural.imageUrl }" >
+							</c:if>
+							<c:if test="${cultural.imageYn == 'N'}">
+								사진이 없습니다
 							</c:if>							
 						</td>
 						<td>
 							<table class="table table-bordered">
 								<tr>
-									<th style="width:150px;">이미지</th>
-									<th style="width:150px;">종목</th>
-									
-								</tr>
-								<tr>
-									<th style="width:150px;">이미지</th>
-									<th style="width:150px;">종목</th>
-									
-								</tr>
-								<tr>
-									<th style="width:150px;">이미지</th>
-									<th style="width:150px;">종목</th>
-									
-								</tr>
-								<tr>
-									<th style="width:150px;">이미지</th>
-									<th style="width:150px;">종목</th>
-									
-								</tr>
+									<th style="width:150px;">소재지</th>
+									<th style="width:150px;">${cultural.ctrdNm }${cultural.signguNm }</th>									
+								</tr>			
 							</table>
-						</td>
-					</tr>  
-					
+						</td>  
+					</tr>  					
 				</table>		
-			</div>
-			
+			</div>			
 		</div>	  
 		  
-		<div class="box-body">  		
-			<!-- 이미지 지도를 표시할 div 입니다 -->	
+		<div class="box-body"> 
+			<table class="table">
+				<tr> 
+					<td>${cultural.crltsDc }</td>
+				</tr>
+			</table>
 			<c:if test="${cultural.XCnts != '0'}">		
 				<div id="staticMap" style="width:968px;height:350px;"></div>
 			</c:if>  

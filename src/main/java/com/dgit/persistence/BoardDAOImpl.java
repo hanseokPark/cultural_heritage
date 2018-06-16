@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dgit.domain.BoardVO;
 import com.dgit.domain.Criteria;
+import com.dgit.domain.ManagerVO;
 import com.dgit.domain.SearchCriteria;
 
 @Repository
@@ -136,5 +137,23 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".selectPass", bno);
 	}
+
+	@Override
+	public ManagerVO selectManagerPass() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".selectManagerPass");
+	}
+
+	@Override
+	public void deleteManager(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		session.delete(namespace + ".deleteManager", bno);
+	}
+
+/*	@Override
+	public ManagerVO login(ManagerVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".login", vo);
+	}*/
 	
 }
