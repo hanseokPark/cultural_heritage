@@ -17,6 +17,7 @@ import com.dgit.domain.AreaEachVO;
 import com.dgit.domain.AreaListVO;
 import com.dgit.domain.Criteria;
 
+
 public class SendSoap {
 	
 	//페이지 번호
@@ -441,7 +442,6 @@ public class SendSoap {
 		//문화재 이름검색
 		public static List<AreaListVO> sendSoap4(int ctrdCd, int itemCd, String culName) throws UnsupportedEncodingException {
 			
-			
 			String name = culName;
 			Object item;
 			Object ctrd;
@@ -463,23 +463,50 @@ public class SendSoap {
 			
 			List<AreaListVO> strList = new ArrayList<>();
 
-			String message ="<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' "
-					+ "xmlns:head='http://apache.org/headers' xmlns:ser='http://service.areacrlts.crlts.cha/'>"
-					+ " <soapenv:Header><head:ComMsgHeader>"
-					+ "<RequestMsgID>fe1b03a0-bc90-11df-b991-0002a5d5c51b</RequestMsgID>"
-					+ "<ServiceKey>M8c6Xf7lFeytSRHsiDgEH+GRsqwRxxu6cLTcC5qwyTaq87zwogTXF6gFQinVcU5Lyh9o4INPyMQGO4FGI5BjmA==</ServiceKey>"
-					+ "<!--Optional:-->" + "<RequestTime>?</RequestTime><CallBackURI>?</CallBackURI>"
-					+ "</head:ComMsgHeader></soapenv:Header><soapenv:Body><ser:getAreaCrltsList>" + "<arg0> "
-					+ "<RequestMsgID></RequestMsgID><ServiceKey></ServiceKey>" + "<!--Optional:-->"
-					+ "<RequestTime>?</RequestTime>" + "<!--Optional:-->" + "<CallBackURI></CallBackURI>"
-					+ "<nowPageNo>1</nowPageNo>" 
-					+ "<pageMg>100</pageMg>" 
-					+ "<ctrdCd>"+ ctrd +"</ctrdCd>" + "<!--Optional:-->"
-					+ "<itemCd>"+ item +"</itemCd>" + "<!--Optional:-->" + "<itemNm>"+ name +"</itemNm>" + "<!--Optional:-->"
-					+ " <crltsNo></crltsNo>" + "<!--Optional:-->" + "<crltsNoNm></crltsNoNm>" + "<!--Optional:-->"
-					+ "<crltsNm></crltsNm>" + "<!--Optional:-->" + "<xCntsBegin></xCntsBegin>" + " <!--Optional:-->"
-					+ "<xCntsEnd></xCntsEnd>" + "<!--Optional:-->" + "<yCntsBegin></yCntsBegin>" + "<!--Optional:-->"
-					+ "<yCntsEnd></yCntsEnd>" + "</arg0> " + "</ser:getAreaCrltsList></soapenv:Body></soapenv:Envelope>";
+			String message ="<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:head='http://apache.org/headers' xmlns:ser='http://service.kndcrlts.crlts.cha/'>"
+							+ "<soapenv:Header>"
+									+ "<head:ComMsgHeader>"
+										+ "<RequestMsgID>fe1b03a0-bc90-11df-b991-0002a5d5c51b</RequestMsgID>"
+										+ "<ServiceKey>M8c6Xf7lFeytSRHsiDgEH+GRsqwRxxu6cLTcC5qwyTaq87zwogTXF6gFQinVcU5Lyh9o4INPyMQGO4FGI5BjmA==</ServiceKey>"
+										+ "<RequestTime></RequestTime>"
+										+ "<CallBackURI></CallBackURI>"
+									+ "</head:ComMsgHeader>"
+								+ "</soapenv:Header>"
+								+ "<soapenv:Body>"
+									+ "<ser:getKndCrltsList>"
+										+ "<arg0> "
+											+ "<RequestMsgID></RequestMsgID>"
+											+ "<ServiceKey></ServiceKey>"
+											+ "<!--Optional:-->"
+											+ "<RequestTime></RequestTime>"
+											+ "<!--Optional:-->" 
+											+ "<CallBackURI></CallBackURI>"
+											+ "<nowPageNo>1</nowPageNo>" 
+											+ "<pageMg>100</pageMg>"
+											+ "<!--Optional:-->"
+											+ "<ctrdCd></ctrdCd>"
+											+ "<!--Optional:-->"
+											+ "<itemCd></itemCd>"
+											+ "<!--Optional:-->"
+											+ "<itemNm>숭례문</itemNm>"
+											+ "<!--Optional:-->"
+											+ "<crltsNo></crltsNo>"
+											+ "<!--Optional:-->"
+											+ "<crltsNoNm></crltsNoNm>"
+											+ "<!--Optional:-->"
+											+ "<crltsNm></crltsNm>"
+											+ "<!--Optional:-->"
+											+ "<xCntsBegin></xCntsBegin>"
+											+ "<!--Optional:-->"
+											+ "<xCntsEnd></xCntsEnd>"
+											+ "<!--Optional:-->"
+											+ "<yCntsBegin></yCntsBegin>"
+											+ "<!--Optional:-->"
+											+ "<yCntsEnd></yCntsEnd>"
+										+ "</arg0>"
+									+ "</ser:getKndCrltsList>"
+								+ "</soapenv:Body>"
+							+ "</soapenv:Envelope>";
 			        
 			       
 			           
@@ -493,7 +520,7 @@ public class SendSoap {
 			
 			System.out.println(message.toString());
 			
-			String strURL = "http://openapi.cha.go.kr:80/openapi/soap/crlts/AreaCrltsService";
+			String strURL = "http://openapi.cha.go.kr:80/openapi/soap/crlts/KndCrltsService";
 
 			HttpClient httpclient = HttpClientBuilder.create().build();
 
@@ -707,22 +734,6 @@ public class SendSoap {
 			return occurance;
 
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

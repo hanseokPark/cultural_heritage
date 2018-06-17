@@ -120,20 +120,19 @@
 						<c:if test="${item.itemNm != '중요무형문화재' }">
 							<td align="center">${item.itemNm } ${item.crltsNoNm}호</td>
 						</c:if>
-						<%-- <td>${item.crltsNm }<br>(${item.crltsNmChcrt })</td> --%>
 						<c:if test="${item.crltsNmChcrt != null }">
 							<td>
-								<a href="detailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
+								<a href="detailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}&itemCdback=${itemCdback}&page=${cri.page}">
 								${item.crltsNm }<br>(${item.crltsNmChcrt })
 								</a>
 							</td>
 						</c:if>								
 						<c:if test="${item.crltsNmChcrt  == null }">   							       				
-                 			<td>
-                 				<a href="detailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}">
+                 			<td>  
+                 				<a href="detailView?crltsNo=${item.crltsNo }&ctrdCd=${item.ctrdCd }&itemCd=${item.itemCd}&itemCdback=${itemCdback}&page=${cri.page}">
                  					${item.crltsNm }
-                 				</a>                 				
-                 			</td>                 			
+                 				</a>
+                 			</td>
                  		</c:if> 
 						<td>${item.ctrdNm }</td>								
 					</tr>	

@@ -25,13 +25,18 @@
 		border-top: 0 !important;  
 	}
 	
+	#datail_div_btn{  
+		text-align: right;
+		margin-bottom: 15px;
+	}
+	
 	
 </style>  
 
 <div class="w3-content" style="max-width:1000px;margin-top:80px;margin-bottom:80px">
 	<div class="w3-row w3-container">
 		<div id="selectwrap">  
-			<div>				<%-- <img src="${cultural.imageUrl } "> --%> <%-- ${cultural.critdDc }   --%>
+			<div>
 				<table class="table">
 					<tr> 
 						<c:if test="${cultural.crltsNmChcrt != null }">							
@@ -56,25 +61,22 @@
 								사진이 없습니다
 							</c:if>							
 						</td>
-						<td>
-							<table class="table table-bordered">
-								<tr>
-									<th style="width:150px;">소재지</th>
-									<th style="width:150px;">${cultural.ctrdNm }${cultural.signguNm }</th>									
-								</tr>			
-							</table>
-						</td>  
+						
 					</tr>  					
 				</table>		
 			</div>			
-		</div>	  
+		</div>		
 		  
 		<div class="box-body"> 
 			<table class="table">
-				<tr> 
+				<tr>
+					<th style="width:150px;">소재지: ${cultural.ctrdNm } ${cultural.signguNm }</th>	
 					<td>${cultural.crltsDc }</td>
-				</tr>
+				</tr>				
 			</table>
+			<div id="datail_div_btn">
+				<a class="btn btn-success btn-flat" href="areaList?ctrdCd=${areaselected }&itemCd=${eventselected }&page=${page }">목록</a>
+			</div>
 			<c:if test="${cultural.XCnts != '0'}">		
 				<div id="staticMap" style="width:968px;height:350px;"></div>
 			</c:if>  
@@ -106,12 +108,7 @@
 
 				// 이미지 지도를 생성합니다
 				var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
-			</script>
-			
-			
-			
-			
-			
+			</script>			
 			
 		</div>  		
 	</div>

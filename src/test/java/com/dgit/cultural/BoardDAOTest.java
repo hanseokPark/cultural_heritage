@@ -9,8 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dgit.domain.BoardVO;
-import com.dgit.domain.Criteria;
-import com.dgit.domain.ManagerVO;
 import com.dgit.domain.SearchCriteria;
 import com.dgit.persistence.BoardDAO;
 
@@ -44,7 +42,7 @@ public class BoardDAOTest {
 		BoardVO vo = new BoardVO();
 		vo.setTitle("title test1");
 		vo.setContent("content test1");
-		vo.setWriter("user00");
+		vo.setBno(3);
 		
 		dao.update(vo);
 		
@@ -53,8 +51,9 @@ public class BoardDAOTest {
 	//@Test
 	public void delete() throws Exception{
 		BoardVO vo = new BoardVO();
-		vo.setBno(3);
-		vo.setUr_pass(0);
+		vo.setBno(4);
+		vo.setUr_pass(1234);
+		
 		dao.delete(vo);
 	}
 	
@@ -63,20 +62,10 @@ public class BoardDAOTest {
 		List<BoardVO> vo = dao.listAll();
 		System.out.println(vo);
 	}
-	//@Test
-	public void testListPage() throws Exception{
-		dao.listPage(1);
-		
-	}
 	
 	//@Test
-	public void testListCriteria() throws Exception{
-		Criteria cri = new Criteria();
-		cri.setPage(1);
-		
-		
-		dao.listCriteria(cri);
-		
+	public void testListPage() throws Exception{		
+		System.out.println(dao.listPage(1));
 	}
 	
 	//@Test
@@ -89,8 +78,9 @@ public class BoardDAOTest {
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
 		cri.setSearchType("t");
-		cri.setKeyword("테스트");
-		dao.listSearch(cri);
+		cri.setKeyword("title");
+		
+		System.out.println(dao.listSearch(cri));
 	}
 	
 }

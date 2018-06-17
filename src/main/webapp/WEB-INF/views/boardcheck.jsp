@@ -66,13 +66,7 @@
 				
 				location.href = "${pageContext.request.contextPath}/readPage?bno="+bno+"&page="+page+"&searchType="+searchType+"&keyword="+keyword+"&mod=mod"; 
 			})  
-						
-						
-				
-						
-						
-						
-
+			
 						
 			</script>
 	

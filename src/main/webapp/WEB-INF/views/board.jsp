@@ -54,8 +54,7 @@
 						<c:forEach var="item" items="${list }">
 							<tr>
 								<td class="td">${item.bno }</td>
-								<td class="td_title"><a href="readPage?bno=${item.bno }&page=${pageMaker.cri.page}&searchType=${cri.searchType }&keyword=${cri.keyword}&viewCnt=0" class="a">${item.title }</a> [${item.replycnt}]</td>							
-						<%-- 		<td class="td_title"><a href="readPage?bno=${item.bno }" class="a"><span>${item.title }</span></a> [${item.replycnt}]</td> --%>
+								<td class="td_title"><a href="readPage?bno=${item.bno }&page=${pageMaker.cri.page}&searchType=${cri.searchType }&keyword=${cri.keyword}&viewCnt=0" class="a">${item.title }</a></td>							
 								<td class="td">${item.writer }</td>
 								<td class="td"><fmt:formatDate value="${item.regdate }" pattern="yyyy-MM-dd HH:mm"/></td>
 								<td class="td"><span class="badge bg-red">${item.viewcnt }</span></td>

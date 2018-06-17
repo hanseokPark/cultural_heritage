@@ -4,10 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dgit.domain.BoardVO;
-import com.dgit.domain.Criteria;
 import com.dgit.domain.ManagerVO;
 import com.dgit.domain.SearchCriteria;
 import com.dgit.persistence.BoardDAO;
@@ -17,7 +15,6 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardDAO dao;	
 	
-	@Transactional
 	@Override
 	public void regist(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub		
@@ -49,10 +46,7 @@ public class BoardServiceImpl implements BoardService {
 		dao.delete(vo);
 	}
 
-	@Override
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception{
-		return dao.listCriteria(cri);
-	}
+
 	@Override
 	public int totalCount() throws Exception{
 		return dao.totalCount();
@@ -77,13 +71,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void deleteAttach(int bno, String fullName) throws Exception {
-		// TODO Auto-generated method stub
-		dao.deleteAttach(bno,fullName);		
-		
-	}
-
-	@Override
 	public BoardVO selectPass(int bno) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectPass(bno);
@@ -101,17 +88,6 @@ public class BoardServiceImpl implements BoardService {
 		dao.deleteManager(bno);	
 	}
 
-/*	@Override
-	public ManagerVO login(ManagerVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.login(vo);
-	}*/
-
-	/*@Override
-	public void modaddAttach(String fullName, int bno) throws Exception {
-		// TODO Auto-generated method stub
-		dao.modaddAttach(fullName, bno);
-	}*/
 
 	
 }

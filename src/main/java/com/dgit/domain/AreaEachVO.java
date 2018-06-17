@@ -35,9 +35,6 @@ public class AreaEachVO {
     private String YCnts;
     
     
-    
-    
-    
 	
 	public String getCrltsDc() {
 		return crltsDc;
