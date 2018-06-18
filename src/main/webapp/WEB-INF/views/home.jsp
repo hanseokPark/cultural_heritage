@@ -7,7 +7,7 @@
 <div id="home_body">
 <div id="top">  
 	<header class="w3-center w3-margin-bottom"> 	
-		<h1><b>KOR 문화재 검색 사이트</b></h1>   
+		<h1><b>KOR 우리 지역 문화재 사이트</b></h1>   
 	</header>   
 </div>    
 <div class="w3-content" style="max-width:1000px; min-height: 710px;"><!-- max-width:500px -->

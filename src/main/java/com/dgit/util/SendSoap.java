@@ -269,12 +269,8 @@ public class SendSoap {
 	
 	//지역 문화재 1개 검색
 	public static AreaEachVO AreaCrltsDtls(int ctrd, int item, String crltsNo2) throws Exception {
-		 AreaEachVO areaEachVO = new AreaEachVO();
-		 
-		 
-		/* System.out.println("1 :"+ ctrd);
-		 System.out.println("2 :"+ item);
-		 System.out.println("3 :"+ crltsNo2);*/
+		
+		AreaEachVO areaEachVO = new AreaEachVO();
 		 
         String message = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' " +
                 "xmlns:head='http://apache.org/headers' xmlns:ser='http://service.areacrlts.crlts.cha/'>"
@@ -439,7 +435,7 @@ public class SendSoap {
 	
 	
 	
-		//문화재 이름검색
+		//문화재 이름검색(않됨)
 		public static List<AreaListVO> sendSoap4(int ctrdCd, int itemCd, String culName) throws UnsupportedEncodingException {
 			
 			String name = culName;
@@ -644,7 +640,7 @@ public class SendSoap {
 	
 	
 	
-		//문화재 검색 페이지 번호
+		//문화재 검색 페이지 번호(않됨)
 		public static int sendSoap3(int ctrdCd, int itemCd, String culName) throws UnsupportedEncodingException {
 				
 			int occurance = 0;

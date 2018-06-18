@@ -18,13 +18,12 @@
 			</div>
 			<div class="content_introduction_padding">
 				<p>					
-					개발기간 : 2018.05.30 ~ 2018.06.?					
+					개발기간 : 2018.05.30 ~ 2018.06.17					
 				</p>
 				<p>
-					개발언어 및 도구 : HTML5, CSS3, JAVAscript, JSP, JAVA, MySql, Bootstrap, Spring, 카카오지도API, 공공데이터포털(문화재청)OPEN API등
+					개발도구 : HTML5, CSS3, JAVAscript, JSP, JAVA, MySql, Bootstrap, Spring, 카카오지도API, 공공데이터포털(문화재청)OPEN API등
 				</p>
-			</div>
-			
+			</div>			
 		</div>
 	  
 	  
