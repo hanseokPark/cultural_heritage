@@ -32,15 +32,12 @@ public class culturalController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("=================home====================");
-		
-		
-				
+		logger.info("=================home====================");				
 		
 		return "home";
 	}
 	
-	@RequestMapping(value="/search", method = RequestMethod.GET)  //, int ctrdCd, int itemCd, String culName
+	@RequestMapping(value="/search", method = RequestMethod.GET)  // int ctrdCd, int itemCd, String culName
 	public void searchGET(Model model, Criteria cri) throws UnsupportedEncodingException{
 		logger.info("=================search 문화재 분류 및 검색 클릭 GET====================");
 		
@@ -74,12 +71,10 @@ public class culturalController {
 		logger.info("=================search 문화재 분류 및 검색 클릭 POST====================");
 		logger.info("================종목번호================="+ itemCd);
 		logger.info("================ 지역번호 ================="+ctrdCd );
-		logger.info("================이름================="+ culName);
-		
-		
-		// itemCd 종목번호  ctrdCd 지역번호 culName(itemNm) 이름
+		logger.info("================이름================="+ culName);		
 		
 		if(culName != null){
+			
 			List<AreaListVO> result = SendSoap.sendSoap4(ctrdCd, itemCd, culName);
 			System.out.println(result);
 			TOTALCOUNT = SendSoap.sendSoap3(ctrdCd, itemCd, culName);
@@ -97,9 +92,6 @@ public class culturalController {
 			String result = null;
 			model.addAttribute("result", result);
 		}
-		
-		
-		
 		
 	}
 	
@@ -145,12 +137,17 @@ public class culturalController {
 		for(AreaListVO vo:result){
 		/*	logger.info("========================" + vo.toString());*/			
 		}
-		
+		System.out.println(itemCd);
+		int itemCdback = itemCd;
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(TOTALCOUNT);
 		
+		System.out.println(cri);
+		
+		model.addAttribute("cri", cri);
+		model.addAttribute("itemCdback", itemCdback);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("areaselected", ctrdCd);		
 		model.addAttribute("eventselected", itemCd);		
@@ -161,21 +158,23 @@ public class culturalController {
 	
 	
 	@RequestMapping(value="/detailView", method = RequestMethod.GET)
-	public void DetailView(Model model, int ctrdCd, int itemCd, String crltsNo) throws Exception{
+	public void DetailView(Model model, int ctrdCd, int itemCd, String crltsNo, int itemCdback, int page) throws Exception{
 		logger.info("================= 명칭 클릭시 상세 보기 ====================");		
-		
+		logger.info("================= 명칭 클릭시 상세 보기 ============="+page);		
 		
 		AreaEachVO result = SendSoap.AreaCrltsDtls(ctrdCd, itemCd, crltsNo);
 		
+		
+		model.addAttribute("page", page);		
+		model.addAttribute("areaselected", ctrdCd);		
+		model.addAttribute("eventselected", itemCdback);
 		model.addAttribute("cultural", result);
 	}
 	
 	
 	@RequestMapping(value="/introductionView", method = RequestMethod.GET)
 	public void introductionView(Model model) throws Exception{
-		logger.info("================= 사이트 소개 ====================");		
-		
-		
+		logger.info("================= 사이트 소개 ====================");				
 		
 	}
 	

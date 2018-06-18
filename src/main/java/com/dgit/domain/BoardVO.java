@@ -13,10 +13,9 @@ public class BoardVO {
 	private int replycnt;
 	
 	
-	
 	public int getBno() {
 		return bno;
-	}	
+	}
 	public void setBno(int bno) {
 		this.bno = bno;
 	}
@@ -67,6 +66,9 @@ public class BoardVO {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", ur_pass="
 				+ ur_pass + ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
+	
+	
+	
 	
 	
 	
