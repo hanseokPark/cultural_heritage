@@ -325,8 +325,6 @@ public class BorderController {
 	/*	DBSAVENAME.add(savedName);*/
 		
 		
-		//logger.info("================= DB이미지이름 ===================="+ DBSAVENAME.toString());
-		
 		
 		File target = new File(uploadPath + "/" + savedName);
 		FileCopyUtils.copy(file.getBytes(), target);
