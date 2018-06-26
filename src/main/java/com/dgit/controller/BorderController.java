@@ -44,7 +44,7 @@ import com.dgit.util.MediaUtils;
 public class BorderController {	
 	private static final Logger logger = LoggerFactory.getLogger(BorderController.class);	
 	
-	private List<String> DBSAVENAME = new ArrayList<String>();
+	/*private List<String> DBSAVENAME = new ArrayList<String>();*/
 	
 	private static boolean VIEWCNT = false;
 	
@@ -81,7 +81,7 @@ public class BorderController {
 	public void registerGet(){
 		logger.info("================= 게시판 글쓰기  GET ====================");		
 		
-		DBSAVENAME.clear();
+		/*DBSAVENAME.clear();*/
 	}
 	
 	
@@ -91,7 +91,7 @@ public class BorderController {
 	public String registerPOST(BoardVO vo, List<MultipartFile> imageFiles) throws Exception{
 		logger.info("================= 게시판 글쓰기 POST ====================");		
 		
-		DBSAVENAME.clear();
+	/*	DBSAVENAME.clear();*/
 		service.regist(vo);
 		
 		return "redirect:/board";
@@ -322,7 +322,7 @@ public class BorderController {
 		//logger.info("================= 이미지이름 ===================="+ savedName);
 		
 		
-		DBSAVENAME.add(savedName);
+	/*	DBSAVENAME.add(savedName);*/
 		
 		
 		//logger.info("================= DB이미지이름 ===================="+ DBSAVENAME.toString());
@@ -341,8 +341,8 @@ public class BorderController {
 	public ResponseEntity<byte[]> displyFile(String filename) throws Exception{
 		ResponseEntity<byte[]> entity = null;
 				
-		InputStream in = null;
-				
+		InputStream in = null;		
+		
 		logger.info("[displayFile] filename : " + filename);
 				
 		try{

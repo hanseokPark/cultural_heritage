@@ -661,12 +661,7 @@ public class SendSoap {
 			}
 				
 				
-			String message = /*"<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:head='http://apache.org/headers' xmlns:ser='http://service.kndcrlts.crlts.cha/'>"
-					+"<soapenv:Header><head:ComMsgHeader><RequestMsgID>fe1b03a0-bc90-11df-b991-0002a5d5c51b</RequestMsgID><ServiceKey>M8c6Xf7lFeytSRHsiDgEH+GRsqwRxxu6cLTcC5qwyTaq87zwogTXF6gFQinVcU5Lyh9o4INPyMQGO4FGI5BjmA==</ServiceKey>"
-					+"<RequestTime>?</RequestTime><CallBackURI>?</CallBackURI></head:ComMsgHeader></soapenv:Header><soapenv:Body><ser:getKndCrltsList>"
-					+"<arg0><RequestMsgID></RequestMsgID><ServiceKey></ServiceKey><RequestTime></RequestTime><CallBackURI>?</CallBackURI><nowPageNo>1</nowPageNo><pageMg>1000</pageMg><itemCd>11</itemCd>"
-					+"<itemNm>숭례문</itemNm><crltsNo></crltsNo><crltsNoNm></crltsNoNm><ctrdCd>11</ctrdCd> <crltsNm></crltsNm><xCntsBegin></xCntsBegin><xCntsEnd></xCntsEnd><yCntsBegin></yCntsBegin><yCntsEnd></yCntsEnd>"
-					+"</arg0></ser:getKndCrltsList></soapenv:Body></soapenv:Envelope>";*/
+			String message =
 					"<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' "
 					+ "xmlns:head='http://apache.org/headers' xmlns:ser='http://service.areacrlts.crlts.cha/'>"
 					+ " <soapenv:Header><head:ComMsgHeader>"
